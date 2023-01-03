@@ -1,0 +1,454 @@
+* {
+  box-sizing: border-box;
+}
+
+.App {
+  width: 100vw;
+  height: 100vh;
+}
+
+.navbar {
+  position: sticky;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgb(58, 145, 173);
+  width: 100%;
+  padding: 12px;
+  z-index: 2;
+}
+.logos {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.logo {
+  font-size: 36px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.gne-logo {
+  width: 120px;
+  height: 120px;
+}
+
+.links {
+  display: flex;
+  width: 50%;
+  justify-content: space-around;
+}
+
+.nav-link {
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.nav-link:hover {
+  color: white;
+  font-weight: 600;
+}
+
+.home {
+  width: 100%;
+}
+
+.home-pic-container {
+  position: relative;
+}
+
+.home-pic {
+  width: 100%;
+}
+
+.home-pic-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.7);
+  font-size: 60px;
+  font-weight: 600;
+  padding: 240px;
+  line-height: 60px;
+  text-align: center;
+}
+
+.primary-button {
+  background-color: rgb(58, 145, 173);
+  padding: 12px 24px;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.primary-button:hover {
+  background-color: rgb(0, 204, 255);
+}
+
+.home-branch-container {
+  padding: 60px 0;
+  color: rgb(32, 32, 32);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.home-slider-container {
+  margin-top: 60px;
+  background-color: rgb(58, 145, 173);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 60px;
+  gap: 60px;
+  width: 100%;
+}
+
+.home-slider-container .alumni-slider {
+  width: 1260px;
+}
+
+.home-slider-container h1 {
+  color: white;
+}
+
+.our-team {
+  margin-top: 60px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  gap: 60px;
+}
+
+.team-card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  max-width: 300px;
+  margin: auto;
+  text-align: center;
+  font-family: arial;
+}
+
+.team-title {
+  color: grey;
+  font-size: 18px;
+}
+
+.team-card-btn {
+  border: none;
+  outline: 0;
+  display: inline-block;
+  padding: 8px;
+  color: white;
+  background-color: #000;
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+  font-size: 18px;
+  border-radius: 0;
+  margin: 0;
+}
+
+.team-btn-div {
+  margin: 0;
+}
+
+.team-social-link {
+  text-decoration: none;
+  font-size: 22px;
+  color: black;
+}
+
+.team-card-btn:hover, .team-social-link:hover {
+  opacity: 0.7;
+}
+
+.our-team-cards {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+}
+
+.branch-cards {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  padding: 36px;
+  gap: 12px;
+}
+
+.branch-card {
+  background-color: white;
+  width: 480px;
+  border-radius: 12px;
+  padding: 24px;
+}
+
+.branch-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0px 0px 12px 4px #888888;
+}
+
+.branch-card-avatar {
+  width: 100%;
+  border-radius: 12px;
+}
+
+.branch-card-branch {
+  font-size: 24px;
+  font-weight: 600;
+  color: gray;
+}
+
+.branch-card-name {
+  font-size: 48px;
+  color: rgb(58, 145, 173);
+}
+
+.branch-card-social {
+  display: flex;
+  gap: 24px;
+}
+
+.footer {
+  background-color: rgb(58, 145, 173);
+  padding: 24px;
+  display: flex;
+  justify-content: center;
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.branches {
+  width: 100%;
+}
+
+.branches-heading {
+  text-align: center;
+  color:rgb(32, 32, 32);
+}
+
+.branches-card-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  padding: 60px;
+  gap: 48px;
+}
+
+.branches-card {
+  background-color: white;
+  padding: 48px 12px;
+  border-radius: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+}
+
+.branches-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0px 0px 12px 4px #888888;
+}
+
+.branch-name {
+  color: rgb(32, 32, 32);
+  font-size: 32px;
+  text-align: center;
+  font-weight: 600;
+}
+
+.branch-icon {
+  width: 256px;
+  height: 256px;
+}
+
+.batches {
+  padding: 60px;
+}
+.batch-heading {
+  color: rgb(32, 32, 32);
+  text-align: center;
+}
+
+.batch-filters {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+}
+
+.batch-dropdown-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: rgb(32, 32, 32);
+  font-weight: 500;
+  gap: 12px;
+  width: 100%;
+  margin-bottom: 12px;
+}
+
+.batch-dropdown {
+  color: rgb(32, 32, 32);
+}
+
+.batch-search {
+  width: 30%;
+  background-color: white;
+  color: rgb(32, 32, 32);
+  border: none;
+  padding: 12px;
+  font-size: 18px;
+}
+
+.batch-search-button {
+  background-color: rgb(58, 145, 173);
+  padding: 12px;
+  cursor: pointer;
+}
+
+.batch-search-button:hover {
+  background-color: rgb(0, 204, 255);
+}
+
+.batch-grid {
+  padding: 60px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 24px;
+}
+
+.branch-card p {
+  color: rgb(32, 32, 32);
+}
+
+.alumni {
+  padding: 60px;
+}
+
+.alumni-body {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.alumni-details {
+  width: 45%;
+  color: rgb(32, 32, 32);
+}
+
+.alumni-slider {
+  width: 50%;
+}
+
+.slider-component {
+  width: 100%;
+}
+
+.slider-img {
+  width: 100%;
+  height: 600px;
+}
+
+.slick-arrow, .slick-prev, .slick-next {
+  background-color: rgb(58, 145, 173);
+}
+
+.alumni-cards {
+  display: flex;
+  justify-content: flex-end;
+  gap: 24px;
+  padding: 60px 0;
+}
+
+.alumni-card {
+  background-color: rgb(58, 145, 173);
+  padding: 24px;
+  border-radius: 24px;
+  width: 300px;
+}
+
+.social-icons {
+  background-color: white;
+  border-radius: 50%;
+}
+
+.alumni-card-heading {
+  font-size: 30px;
+}
+
+.alumni-card p {
+  font-size: 18px;
+  line-height: 24px;
+}
+
+.register {
+  padding: 60px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.register-heading {
+  color: rgb(32, 32, 32);
+}
+
+.register-form {
+  padding: 60px;
+  padding-bottom: 24px;
+  background-color: rgb(58, 145, 173);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.register-input {
+  background-color: white;
+  width: 512px;
+  height: 48px;
+  border: none;
+  font-size: 18px;
+  padding: 12px;
+  color: rgb(32, 32, 32);
+}
+
+.register-about-form {
+  background-color: rgb(58, 145, 173);
+  padding: 60px;
+  padding-top: 0;
+}
+
+.register-textarea {
+  background-color: white;
+  width: 1048px;
+  height: 256px;
+  border: none;
+  font-size: 18px;
+  padding: 12px;
+  color: rgb(32, 32, 32);
+}
+
+.register-button-container {
+  display: flex;
+  justify-content: center;
+  padding: 24px;
+}
+
+.register-button {
+  background-color: rgb(58, 145, 173);
+  font-size: 24px;
+  padding: 24px 48px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.register-button:hover {
+  background-color: rgb(0, 204, 255);
+}
