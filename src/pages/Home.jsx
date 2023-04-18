@@ -26,7 +26,7 @@ export const Homepage = () => {
             <div className="home-pic-container">
                 <img className="home-pic" src={grad} />
                 <div className="home-pic-overlay">
-                    <p>
+                    <p style={{"color": "white"}}>
                         Celebrating the Golden Jubliee of GNDEC graduated batch of 1973.
                     </p>
                     <div className="home-buttons">
