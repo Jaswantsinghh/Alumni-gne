@@ -24,6 +24,18 @@ export const AdminPage = () => {
     setSelected(entry);
   };
 
+  const handleVerify = async (id) => {
+    let entry = data.find((entry) => entry._id === id);
+    entry.isVerified = !entry.isVerified;
+    axios
+      .patch(`http://localhost:3000/verify/${id}`)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
   return (
     <div className="admin-table">
       <table>
@@ -78,6 +90,7 @@ export const AdminPage = () => {
                   className={`verify ${
                     entry.isVerified ? "verified" : "unverified"
                   }`}
+                  onClick={() => handleVerify(entry._id)}
                 >
                   {entry.isVerified ? "Unverify" : "Verify"}
                 </button>

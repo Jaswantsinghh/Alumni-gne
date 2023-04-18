@@ -17,7 +17,7 @@
   background-color: rgb(58, 145, 173);
   width: 100%;
   padding: 12px;
-  z-index: 0;
+  z-index: 5;
 }
 .logos {
   display: flex;
@@ -58,6 +58,7 @@
 
 .home-pic-container {
   position: relative;
+  z-index: 10;
 }
 
 .home-pic {
@@ -167,7 +168,8 @@
   color: black;
 }
 
-.team-card-btn:hover, .team-social-link:hover {
+.team-card-btn:hover,
+.team-social-link:hover {
   opacity: 0.7;
 }
 
@@ -234,7 +236,7 @@
 
 .branches-heading {
   text-align: center;
-  color:rgb(32, 32, 32);
+  color: rgb(32, 32, 32);
 }
 
 .branches-card-container {
@@ -358,7 +360,9 @@
   height: 600px;
 }
 
-.slick-arrow, .slick-prev, .slick-next {
+.slick-arrow,
+.slick-prev,
+.slick-next {
   background-color: rgb(58, 145, 173);
 }
 
@@ -453,4 +457,3 @@
 .register-button:hover {
   background-color: rgb(0, 204, 255);
 }
-
