@@ -2,11 +2,61 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "../style/admin.css";
 import Modal from "react-modal";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export const AdminPage = () => {
   const [data, setData] = useState([]);
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [selected, setSelected] = useState({});
+
+  const handleView = (id) => {
+    let entry = data.find((entry) => entry._id === id);
+    setModalIsOpen(true);
+    setSelected(entry);
+  };
+
+  const handleVerify = (id) => {
+    let entry = data.find((entry) => entry._id === id);
+    entry.isVerified = !entry.isVerified;
+    axios
+      .patch(`http://localhost:3000/verify/${id}`)
+      .then((res) => {
+        console.log(res);
+        if (res.status === 200) {
+          toast.success("Verification successful !", {
+            position: toast.POSITION.TOP_RIGHT,
+          });
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+        toast.error("Verification failed !", {
+          position: toast.POSITION.TOP_RIGHT,
+        });
+      });
+  };
+
+  const handleUnverify = (id) => {
+    axios
+      .patch(`http://localhost:3000/unverify/${id}`)
+      .then((res) => {
+        console.log(res);
+        if (res.status === 200) {
+          toast.success("Unverification successful !", {
+            position: toast.POSITION.TOP_RIGHT,
+          });
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+        toast.error("Unverification failed !", {
+          position: toast.POSITION.TOP_RIGHT,
+        });
+      });
+  };
+
+
   useEffect(() => {
     axios
       .get("http://localhost:3000/users")
@@ -16,26 +66,8 @@ export const AdminPage = () => {
       .catch((err) => {
         console.log(err);
       });
-  }, []);
-
-  const handleView = (id) => {
-    let entry = data.find((entry) => entry._id === id);
-    setModalIsOpen(true);
-    setSelected(entry);
-  };
-
-  const handleVerify = async (id) => {
-    let entry = data.find((entry) => entry._id === id);
-    entry.isVerified = !entry.isVerified;
-    axios
-      .patch(`http://localhost:3000/verify/${id}`)
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
+  }, [handleVerify]);
+   
   return (
     <div className="admin-table">
       <table>
@@ -86,11 +118,10 @@ export const AdminPage = () => {
                 </button>
               </td>
               <td>
-                <button
+                <button onClick={() => entry.isVerified ? handleUnverify(entry._id) : handleVerify(entry._id)}
                   className={`verify ${
                     entry.isVerified ? "verified" : "unverified"
                   }`}
-                  onClick={() => handleVerify(entry._id)}
                 >
                   {entry.isVerified ? "Unverify" : "Verify"}
                 </button>
@@ -127,6 +158,7 @@ export const AdminPage = () => {
         )}
         <button onClick={() => setModalIsOpen(false)}>Close Modal</button>
       </Modal>
+      <ToastContainer />
     </div>
   );
 };
