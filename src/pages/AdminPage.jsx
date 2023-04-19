@@ -134,6 +134,7 @@ export const AdminPage = () => {
         isOpen={modalIsOpen}
         onRequestClose={() => setModalIsOpen(false)}
         contentLabel="Example Modal"
+        className="modal"
       >
         <h2>Student's Detail</h2>
         {selected && (

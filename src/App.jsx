@@ -20,7 +20,7 @@ function App() {
         <Route path="/home" element={<Homepage />} />
         <Route path="/branches" element={<Branches />} />
         <Route path="/batches/:branch" element={<Batch />} />
-        <Route path="/alumni" element={<Alumni />} />
+        <Route path="/alumni/:alumniId" element={<Alumni />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
         <Route path="/admin" element={<AdminPage />} />

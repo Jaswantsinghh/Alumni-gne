@@ -17,7 +17,7 @@
   background-color: rgb(58, 145, 173);
   width: 100%;
   padding: 12px;
-  z-index: 5;
+  z-index: 0;
 }
 .logos {
   display: flex;
@@ -189,7 +189,8 @@
 
 .branch-card {
   background-color: white;
-  max-width: 360px;
+  max-width: 300px;
+  min-width: 240px;
   border-radius: 12px;
   padding: 24px;
 }
@@ -205,20 +206,21 @@
 }
 
 .branch-card-branch {
-  font-size: 24px;
+  font-size: 12px;
   font-weight: 600;
   color: gray;
 }
 
 .branch-card-name {
-  font-size: 36px;
-  line-height: 48px;
+  font-size: 24px;
+  line-height: 24px;
   color: rgb(58, 145, 173);
 }
 
 .branch-card-social {
   display: flex;
   gap: 24px;
+  margin-bottom: 0;
 }
 
 .footer {
@@ -275,6 +277,7 @@
 
 .batches {
   padding: 60px;
+  z-index: -1;
 }
 .batch-heading {
   color: rgb(32, 32, 32);
@@ -300,6 +303,7 @@
 
 .batch-dropdown {
   color: rgb(32, 32, 32);
+  z-index: -1;
 }
 
 .batch-search {
@@ -326,10 +330,12 @@
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 24px;
+  z-index: -1;
 }
 
 .branch-card p {
   color: rgb(32, 32, 32);
+  z-index: -1;
 }
 
 .alumni {
@@ -340,6 +346,7 @@
   display: flex;
   width: 100%;
   justify-content: space-between;
+  z-index: -1;
 }
 
 .alumni-details {
@@ -348,6 +355,7 @@
 }
 
 .alumni-slider {
+  z-index: -1;
   width: 50%;
 }
 
@@ -378,6 +386,7 @@
   padding: 24px;
   border-radius: 24px;
   width: 300px;
+  z-index: -1;
 }
 
 .social-icons {

@@ -10,9 +10,8 @@ export const Batch = () => {
   const { branch } = useParams();
   const [users, setUsers] = useState([]);
 
-  const onClick = (e) => {
-    e.preventDefault();
-    navigateTo("/alumni");
+  const handleClick = (id) => {
+    navigateTo(`/alumni/${id}`);
   };
 
   const options = [
@@ -36,10 +35,11 @@ export const Batch = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/users")
+      .get("http://localhost:3000/verified-users")
       .then((res) => {
         const filteredUsers = res.data.filter((user) => user.branch === branch);
         setUsers(filteredUsers);
+        console.log(filteredUsers)
       })
       .catch((err) => {
         console.log(err);
@@ -60,15 +60,16 @@ export const Batch = () => {
       <div className="batch-grid">
         {users.map((user) => {
           return (
-            <div className="branch-card" onClick={onClick} key={user._id}>
-              <img className="branch-card-avatar" src={avatar} />
-              <p className="branch-card-branch">{user.branch} '73</p>
+            <div className="branch-card" onClick={() => handleClick(user._id)} key={user._id}>
+              <img className="branch-card-avatar" src={user?.photos?.length > 0 ? `http://localhost:3000/public/uploads/${user.photos[0]}` : avatar} />
+              <p className="branch-card-branch">{user.branch} {user.graduationYear} | Roll No.: {user.rollNo}</p>
               <p className="branch-card-name">
                 {user.firstName + " " + user.lastName}
               </p>
               <p>
-                Glavi amet ritnisl libero molestie ante ut fringilla purus eros
-                quis glavrid from dolor amet iquam lorem bibendum
+                {user.aboutMe?.length > 100
+                  ? user.about.slice(0, 100) + "..."
+                  : user.about}
               </p>
               <div className="branch-card-social">
                 <SocialIcon url="https://twitter.com/" />
