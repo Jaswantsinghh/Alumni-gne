@@ -3,6 +3,7 @@ import "../style/Register.css";
 import axios from "axios";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Modal from "react-modal";
 
 export const Register = () => {
   const [firstName, setFirstName] = useState("");
@@ -21,6 +22,18 @@ export const Register = () => {
   const [facebookProfile, setFacebookProfile] = useState("");
   const [aboutMe, setAboutMe] = useState("");
   const [password, setPassword] = useState("");
+  const [otp, setOtp] = useState("");
+  const [user, setUser] = useState({});
+
+  const handleOtpSubmit = async (event) => {
+    axios.post(`http://localhost:3000/verify/user/${user.id}`)
+    .then((res) => {
+      console.log(res);
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+  }
 
   const handleSubmit = async (event) => {
     event.preventDefault();
