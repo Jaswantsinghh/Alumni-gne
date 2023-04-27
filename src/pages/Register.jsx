@@ -20,6 +20,7 @@ export const Register = () => {
   const [instagramProfile, setInstagramProfile] = useState("");
   const [facebookProfile, setFacebookProfile] = useState("");
   const [aboutMe, setAboutMe] = useState("");
+  const [password, setPassword] = useState("");
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -38,6 +39,7 @@ export const Register = () => {
     formData.append("instagramProfile", instagramProfile);
     formData.append("facebookProfile", facebookProfile);
     formData.append("aboutMe", aboutMe);
+    formData.append("password", password);
 
     for(let i=0; i<photos.length; i++) {
         formData.append("photos", photos[i]);
@@ -238,6 +240,17 @@ export const Register = () => {
             onChange={(event) => setAboutMe(event.target.value)}
             required
           ></textarea>
+        </div>
+        <div className="form-group">
+            <label htmlFor="password">Password:</label>
+            <input
+                type="password"
+                id="password"
+                name="password"
+                value={password}
+                onChange={(event) => setPassword(event.target.value)}
+                required
+            />
         </div>
         <button type="submit" onClick={handleSubmit}>Submit</button>
       </form>
