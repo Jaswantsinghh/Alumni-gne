@@ -5,7 +5,7 @@ import { Branches } from "./pages/Branches";
 import { Batch } from "./pages/Batch";
 import { Footer } from "./components/Footer";
 import { Alumni } from "./pages/alumni";
-import { Register } from "./pages/register";
+import { Register } from "./pages/Register";
 import { Login } from "./pages/Login";
 import { AdminPage } from "./pages/AdminPage";
 import { Profile } from "./pages/Profile";
