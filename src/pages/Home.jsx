@@ -1,4 +1,4 @@
-import grad from '../images/grad.png';
+import grad from '../images/grad.webp';
 import avatar from '../images/avatar.webp';
 import { SocialIcon } from 'react-social-icons';
 import { useNavigate } from 'react-router';
