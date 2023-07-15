@@ -4,8 +4,11 @@ import axios from "axios";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Modal from "react-modal";
+import { useNavigate } from "react-router-dom";
 
 export const Register = () => {
+  const navigate = useNavigate();
+  const [modalIsOpen, setModalIsOpen] = useState(false);
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [rollNo, setRollNo] = useState("");
@@ -26,12 +29,25 @@ export const Register = () => {
   const [user, setUser] = useState({});
 
   const handleOtpSubmit = async (event) => {
-    axios.post(`http://localhost:3000/verify/user/${user.id}`)
+
+    event.preventDefault();
+    axios.post(`http://localhost:3000/verify/user/${user._id}`, { "otp": otp }, {
+      headers: {
+        'Content-Type': 'application/JSON'
+      }
+    })
     .then((res) => {
-      console.log(res);
+      setModalIsOpen(false);
+      toast.success('Email verified successful !', {
+        position: toast.POSITION.TOP_RIGHT
+    });
+    navigate('/login');
     })
     .catch((err) => {
       console.log(err);
+      toast.error('Incorrect OTP !', {
+        position: toast.POSITION.TOP_RIGHT
+    });
     })
   }
 
@@ -68,7 +84,11 @@ export const Register = () => {
             toast.success('Registration successful !', {
                 position: toast.POSITION.TOP_RIGHT
             });
+            localStorage.setItem("user", JSON.stringify(res.data.user));
+            setUser(res.data.user)
+            setModalIsOpen(true);
         } else {
+            console.log("Error occured", err);
             toast.error('Registration failed !', {
                 position: toast.POSITION.TOP_RIGHT
             });
@@ -268,6 +288,25 @@ export const Register = () => {
         <button type="submit" onClick={handleSubmit}>Submit</button>
       </form>
       <ToastContainer />
+      <Modal
+        isOpen={modalIsOpen}
+        onRequestClose={() => setModalIsOpen(false)}
+        contentLabel="Example Modal"
+        className="modal"
+      >
+        <div className="form-group">
+          <label htmlFor="otp">OTP:</label>
+          <input
+            type="text"
+            id="otp"
+            name="otp"
+            value={otp}
+            onChange={(event) => setOtp(event.target.value)}
+            required
+          />
+          <button onClick={handleOtpSubmit}>Submit</button>
+        </div>
+      </Modal>
     </div>
   );
 }

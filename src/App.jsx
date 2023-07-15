@@ -8,6 +8,7 @@ import { Alumni } from "./pages/alumni";
 import { Register } from "./pages/register";
 import { Login } from "./pages/Login";
 import { AdminPage } from "./pages/AdminPage";
+import { Profile } from "./pages/Profile";
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
 import { StoreProvider } from "easy-peasy";
@@ -28,6 +29,7 @@ function App() {
             <Route path="/register" element={<Register />} />
             <Route path="/login" element={<Login />} />
             <Route path="/admin" element={<AdminPage />} />
+            <Route path="/profile" element={<Profile />} />
           </Routes>
           <Footer />
         </div>

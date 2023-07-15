@@ -2,13 +2,8 @@ import React, { useState, useEffect } from "react";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
-import avatar from "../images/avatar.webp";
-import grad from "../images/grad.png";
-import engineering from "../images/engineering.png";
 import { SocialIcon } from "react-social-icons";
 import { useNavigate, useParams } from "react-router-dom";
-import ss1 from "../images/ss1.png";
-import ss2 from "../images/ss2.png";
 import axios from "axios";
 
 export const Alumni = () => {
@@ -56,7 +51,7 @@ export const Alumni = () => {
             {user.firstName} {user.lastName}
           </h1>
           <b>Branch: </b><span>{user.branch}</span><br/>
-          <b>Year: </b><span>{user.graduationYear}</span><br/>
+          <b>Batch: </b><span>{user.graduationYear}</span><br/>
           <b>Roll no.: </b><span>{user.rollNo}</span><br/>
           <p>{user.about}</p>
         </div>

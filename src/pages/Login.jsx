@@ -1,18 +1,20 @@
 import axios from "axios";
 import { useState } from "react";
-import { toast } from "react-toastify";
-import { useStoreActions, useStoreState } from "easy-peasy";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { useStoreActions } from "easy-peasy";
+import { useNavigate } from "react-router-dom";
 
 export const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
   // action to set user
   const setUser = useStoreActions((actions) => actions.setUser);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     console.log("inside handel submit");
 
     try {
@@ -22,29 +24,43 @@ export const Login = () => {
       });
       if (response.status === 200) {
         setUser(response.data);
+        localStorage.setItem("user", JSON.stringify(response.data));
         toast.success("Login successful", {
           position: toast.POSITION.TOP_RIGHT,
         });
+        navigate("/home");
       }
-      console.log(response);
+      else {
+        toast.error("Login failed!\nIncorrect Email or Password!", {
+          position: toast.POSITION.TOP_RIGHT,
+        });
+      }
     } catch (err) {
       console.log(err);
+      toast.error("Login failed!\nIncorrect Email or Password!", {
+        position: toast.POSITION.TOP_RIGHT,
+      });
     }
   };
   return (
     <div className="register">
       <form onSubmit={handleSubmit}>
         <h1 className="register-heading">Login</h1>
-        <div className="register-form">
+        <div className="login-form">
+          
+        <label htmlFor="email">Email:</label>
           <input
-            className="register-input"
-            type="text"
+            className="login-input"
+            type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             placeholder="Email"
           ></input>
+          <br />
+          <br />
+          <label htmlFor="email">Password:</label>
           <input
-            className="register-input"
+            className="login-input"
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
@@ -57,6 +73,7 @@ export const Login = () => {
           </button>
         </div>
       </form>
+      <ToastContainer />
     </div>
   );
 };

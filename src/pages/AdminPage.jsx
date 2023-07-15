@@ -4,12 +4,24 @@ import "../style/admin.css";
 import Modal from "react-modal";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
+import { useNavigate } from "react-router-dom";
 export const AdminPage = () => {
+  const navigate = useNavigate();
   const [data, setData] = useState([]);
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [selected, setSelected] = useState({});
 
+  useEffect(() => {
+    const user =  JSON.parse(localStorage.getItem("user"));
+    console.log(user);
+    if(!user) {
+      navigate("/");
+    } else {
+      if (user?.user?.userType !== "admin") {
+        navigate("/");
+      }
+    }
+  }, [])
   const handleView = (id) => {
     let entry = data.find((entry) => entry._id === id);
     setModalIsOpen(true);
