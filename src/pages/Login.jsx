@@ -4,11 +4,14 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useStoreActions } from "easy-peasy";
 import { useNavigate } from "react-router-dom";
+import { constants } from "../constant";
 
 export const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
+
+  const CONSTANTS = constants();
 
   // action to set user
   const setUser = useStoreActions((actions) => actions.setUser);
@@ -18,7 +21,7 @@ export const Login = () => {
     console.log("inside handel submit");
 
     try {
-      const response = await axios.post("http://localhost:3000/login", {
+      const response = await axios.post(`${CONSTANTS.API_BASE_URL}login`, {
         email,
         password,
       });

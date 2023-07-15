@@ -5,12 +5,14 @@ import Modal from "react-modal";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from "react-router-dom";
+import { constants } from "../constant";
+
 export const AdminPage = () => {
   const navigate = useNavigate();
   const [data, setData] = useState([]);
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [selected, setSelected] = useState({});
-
+  const CONSTANTS = constants();
   useEffect(() => {
     const user =  JSON.parse(localStorage.getItem("user"));
     console.log(user);
@@ -32,7 +34,7 @@ export const AdminPage = () => {
     let entry = data.find((entry) => entry._id === id);
     entry.isVerified = !entry.isVerified;
     axios
-      .patch(`http://localhost:3000/verify/${id}`)
+      .patch(`${CONSTANTS.API_BASE_URL}verify/${id}`)
       .then((res) => {
         console.log(res);
         if (res.status === 200) {
@@ -51,7 +53,7 @@ export const AdminPage = () => {
 
   const handleUnverify = (id) => {
     axios
-      .patch(`http://localhost:3000/unverify/${id}`)
+      .patch(`${CONSTANTS.API_BASE_URL}unverify/${id}`)
       .then((res) => {
         console.log(res);
         if (res.status === 200) {
@@ -71,7 +73,7 @@ export const AdminPage = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/users")
+      .get(`${CONSTANTS.API_BASE_URL}users`)
       .then((res) => {
         setData(res.data);
       })

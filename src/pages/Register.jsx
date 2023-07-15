@@ -5,6 +5,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Modal from "react-modal";
 import { useNavigate } from "react-router-dom";
+import { constants } from "../constant";
 
 export const Register = () => {
   const navigate = useNavigate();
@@ -28,10 +29,12 @@ export const Register = () => {
   const [otp, setOtp] = useState("");
   const [user, setUser] = useState({});
 
+  const CONSTANTS = constants();
+
   const handleOtpSubmit = async (event) => {
 
     event.preventDefault();
-    axios.post(`http://localhost:3000/verify/user/${user._id}`, { "otp": otp }, {
+    axios.post(`${CONSTANTS.API_BASE_URL}verify/user/${user._id}`, { "otp": otp }, {
       headers: {
         'Content-Type': 'application/JSON'
       }
@@ -73,7 +76,7 @@ export const Register = () => {
     for(let i=0; i<photos.length; i++) {
         formData.append("photos", photos[i]);
     }
-    axios.post("http://localhost:3000/register", formData, {
+    axios.post(`${CONSTANTS.API_BASE_URL}register`, formData, {
         headers: {
             "Content-Type": "multipart/form-data"
         }

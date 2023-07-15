@@ -5,14 +5,17 @@ import Slider from "react-slick";
 import { SocialIcon } from "react-social-icons";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
+import { constants } from "../constant";
 
 export const Alumni = () => {
   const { alumniId } = useParams();
   const [user, setUser] = useState({});
   const [photos, setPhotos] = useState([]);
+
+  const CONSTANTS = constants();
   const handleAlumni = () => {
     axios
-      .get(`http://localhost:3000/user/${alumniId}`)
+      .get(`${CONSTANTS.API_BASE_URL}user/${alumniId}`)
       .then((res) => {
         console.log(res);
         setUser(res.data);

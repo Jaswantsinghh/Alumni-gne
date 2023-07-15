@@ -4,12 +4,14 @@ import avatar from "../images/avatar.webp";
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { constants } from "../constant";
 
 export const Batch = () => {
   const navigateTo = useNavigate();
   const { branch } = useParams();
   const [users, setUsers] = useState([]);
 
+  const CONSTANTS = constants();
   const handleClick = (id) => {
     navigateTo(`/alumni/${id}`);
   };
@@ -35,7 +37,7 @@ export const Batch = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/verified-users")
+      .get(`${CONSTANTS.API_BASE_URL}verified-users`)
       .then((res) => {
         const filteredUsers = res.data.filter((user) => user.branch === branch);
         setUsers(filteredUsers);
