@@ -13,6 +13,7 @@ export const AdminPage = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [selected, setSelected] = useState({});
   const CONSTANTS = constants();
+  
   useEffect(() => {
     const user =  JSON.parse(localStorage.getItem("user"));
     console.log(user);

@@ -63,7 +63,7 @@ export const Batch = () => {
         {users.map((user) => {
           return (
             <div className="branch-card" onClick={() => handleClick(user._id)} key={user._id}>
-              <img className="branch-card-avatar" src={user?.photos?.length > 0 ? `http://localhost:3000/public/uploads/${user.photos[0]}` : avatar} />
+              <img className="branch-card-avatar" src={user?.photos?.length > 0 ? `${CONSTANTS.DO_BUCKET_URL}${user.photos[0]}` : avatar} />
               <p className="branch-card-branch">{user.branch} {user.graduationYear} | Roll No.: {user.rollNo}</p>
               <p className="branch-card-name">
                 {user.firstName + " " + user.lastName}

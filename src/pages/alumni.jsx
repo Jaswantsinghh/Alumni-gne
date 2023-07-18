@@ -62,7 +62,7 @@ export const Alumni = () => {
             {photos.map((index) => {
                 return (
                     <div className="slider-component" id={index}>
-                        <img className="slider-img" src={`http://localhost:3000/public/uploads/${user.photos[index]}`}></img>
+                        <img className="slider-img" src={`${CONSTANTS.DO_BUCKET_URL}${user.photos[index]}`}></img>
                     </div>
                 )
             }
