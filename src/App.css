@@ -24,25 +24,27 @@
 }
 .logos {
   display: flex;
-  gap: 12px;
+  gap: 8px;
   align-items: center;
 }
 
 .logo {
-  font-size: 36px;
+  font-size: 24px;
   font-weight: 500;
   cursor: pointer;
 }
 
 .gne-logo {
-  width: 120px;
-  height: 120px;
+  width: 64px;
+  height: 64px;
 }
 
 .links {
   display: flex;
   width: 50%;
-  justify-content: space-around;
+  gap: 2rem;
+  justify-content: flex-end;
+  margin-right: 2rem;
 }
 
 .nav-link {
@@ -281,7 +283,6 @@
 
 .batches {
   padding: 60px;
-  z-index: -1;
 }
 .batch-heading {
   color: rgb(32, 32, 32);
@@ -387,10 +388,9 @@
 
 .alumni-card {
   background-color: rgb(58, 145, 173);
-  padding: 24px;
+  padding: 16px;
   border-radius: 24px;
   width: 300px;
-  z-index: -1;
 }
 
 .social-icons {
@@ -399,7 +399,7 @@
 }
 
 .alumni-card-heading {
-  font-size: 30px;
+  font-size: 12px;
 }
 
 .alumni-card p {

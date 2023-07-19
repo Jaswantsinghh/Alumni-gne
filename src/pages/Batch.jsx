@@ -10,6 +10,7 @@ export const Batch = () => {
   const navigateTo = useNavigate();
   const { branch } = useParams();
   const [users, setUsers] = useState([]);
+  const [filteredUsers, setFilteredUsers] = useState([]);
 
   const CONSTANTS = constants();
   const handleClick = (id) => {
@@ -41,30 +42,72 @@ export const Batch = () => {
       .then((res) => {
         const filteredUsers = res.data.filter((user) => user.branch === branch);
         setUsers(filteredUsers);
-        console.log(filteredUsers)
+        setFilteredUsers(filteredUsers);
+        console.log(filteredUsers);
       })
       .catch((err) => {
         console.log(err);
       });
   }, []);
 
+  const handleSearchBatch = (value, inputType) => {
+    let filteredUsers = [];
+    if (inputType === "select") {
+      console.log(value);
+      filteredUsers = users.filter((user) => user.graduationYear === value);
+    } else {
+      filteredUsers = users.filter((user) => {
+        const regex = new RegExp(value, "i"); // 'i' flag for case-insensitive search
+        return regex.test(user.firstName) || regex.test(user.lastName);
+      });
+    }
+
+    setFilteredUsers(filteredUsers);
+
+    console.log(users);
+  };
+
   return (
-    <div className="batches">
+    <div className="batches ">
       <h1 className="batch-heading">Explore By Batches</h1>
       <div className="batch-dropdown-container">
         <p className="batch-year">Batch Year</p>
-        <Select className="batch-dropdown" options={options} />
+        <Select
+          className="batch-dropdown z-10"
+          options={options}
+          onChange={(value) => handleSearchBatch(value.value, "select")}
+        />
       </div>
-      <div className="batch-filters">
-        <input className="batch-search" placeholder="Search by keyword"></input>
+      <div className="batch-filters ">
+        <input
+          className="w-1/3 border rounded border-gray"
+          placeholder="Search by keyword"
+          onChange={(e) => handleSearchBatch(e.target.value, "input")}
+        />
         <div className="batch-search-button">Search</div>
       </div>
       <div className="batch-grid">
-        {users.map((user) => {
+        {filteredUsers.length === 0 && (
+          <p className="text-center text-3xl">No results found</p>
+        )}
+        {filteredUsers.map((user) => {
           return (
-            <div className="branch-card" onClick={() => handleClick(user._id)} key={user._id}>
-              <img className="branch-card-avatar" src={user?.photos?.length > 0 ? `${CONSTANTS.DO_BUCKET_URL}${user.photos[0]}` : avatar} />
-              <p className="branch-card-branch">{user.branch} {user.graduationYear} | Roll No.: {user.rollNo}</p>
+            <div
+              className="branch-card cursor-pointer"
+              onClick={() => handleClick(user._id)}
+              key={user._id}
+            >
+              <img
+                className="branch-card-avatar"
+                src={
+                  user?.photos?.length > 0
+                    ? `${CONSTANTS.DO_BUCKET_URL}${user.photos[0]}`
+                    : avatar
+                }
+              />
+              <p className="branch-card-branch">
+                {user.branch} {user.graduationYear} | Roll No.: {user.rollNo}
+              </p>
               <p className="branch-card-name">
                 {user.firstName + " " + user.lastName}
               </p>

@@ -9,6 +9,7 @@ import { Register } from "./pages/Register";
 import { Login } from "./pages/Login";
 import { AdminPage } from "./pages/AdminPage";
 import { Profile } from "./pages/Profile";
+import AboutPage from "./pages/AboutPage";
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
 import { StoreProvider } from "easy-peasy";
@@ -22,7 +23,8 @@ function App() {
           <Navbar />
           <Routes>
             <Route path="/" element={<Homepage />} />
-            <Route path="/home" element={<Homepage />} />
+            <Route path="/about" element={<AboutPage />} />
+
             <Route path="/branches" element={<Branches />} />
             <Route path="/batches/:branch" element={<Batch />} />
             <Route path="/alumni/:alumniId" element={<Alumni />} />

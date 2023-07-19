@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { useStoreActions } from "easy-peasy";
 import { useNavigate } from "react-router-dom";
 import { constants } from "../constant";
@@ -31,9 +31,11 @@ export const Login = () => {
         toast.success("Login successful", {
           position: toast.POSITION.TOP_RIGHT,
         });
-        navigate("/home");
-      }
-      else {
+        console.log(response);
+        response.data.user.userType === "admin"
+          ? (window.location.href = "/admin")
+          : navigate("/");
+      } else {
         toast.error("Login failed!\nIncorrect Email or Password!", {
           position: toast.POSITION.TOP_RIGHT,
         });
@@ -50,8 +52,7 @@ export const Login = () => {
       <form onSubmit={handleSubmit}>
         <h1 className="register-heading">Login</h1>
         <div className="login-form">
-          
-        <label htmlFor="email">Email:</label>
+          <label htmlFor="email">Email:</label>
           <input
             className="login-input"
             type="email"

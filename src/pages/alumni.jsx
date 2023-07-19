@@ -20,9 +20,9 @@ export const Alumni = () => {
         console.log(res);
         setUser(res.data);
         if (photos.length === 0) {
-            for(let i=0; i<res.data.photos.length; i++){
-                setPhotos((photos) => [...photos, i])
-            }
+          for (let i = 0; i < res.data.photos.length; i++) {
+            setPhotos((photos) => [...photos, i]);
+          }
         }
       })
       .catch((err) => {
@@ -53,45 +53,78 @@ export const Alumni = () => {
           <h1>
             {user.firstName} {user.lastName}
           </h1>
-          <b>Branch: </b><span>{user.branch}</span><br/>
-          <b>Batch: </b><span>{user.graduationYear}</span><br/>
-          <b>Roll no.: </b><span>{user.rollNo}</span><br/>
-          <p>{user.about}</p>
+          <div className="details mt-8 text-xl">
+            <b>Branch: </b>
+            <span className="ml-4 ">{user.branch}</span>
+            <br />
+            <b>Batch: </b>
+            <span className="ml-4 ">{user.graduationYear}</span>
+            <br />
+            <b>Roll no.: </b>
+            <span className="ml-4 ">{user.rollNo}</span>
+            <br />
+            <div className="about mt-4">
+              <h3 className="text-3xl font-medium"> About</h3>
+              <p className="">{user.about}</p>
+            </div>
+          </div>
+          <div className="flex flex-col gap-2 mt-4">
+            <div className="alumni-card">
+              <div>
+                <h2 className="alumni-card-heading">CALL ME</h2>
+              </div>
+              <p>{user.phoneNumber}</p>
+            </div>
+            <div className="alumni-card">
+              <div>
+                <h2 className="alumni-card-heading">ADDRESS</h2>
+              </div>
+              <p>{user.address}</p>
+            </div>
+
+            {user.twitterProfileUrl ||
+            user.facebookProfileUrl ||
+            user.instagramProfileUrl ? (
+              <div className="alumni-card">
+                <div>
+                  <h2 className="alumni-card-heading">SOCIAL LINKS</h2>
+                </div>
+                <div className="branch-card-social">
+                  {user.twitterProfileUrl && (
+                    <SocialIcon
+                      className="social-icons"
+                      url={user.twitterProfileUrl}
+                    />
+                  )}
+                  {user.facebookProfileUrl && (
+                    <SocialIcon
+                      className="social-icons"
+                      url={user.facebookProfileUrl}
+                    />
+                  )}
+                  {user.instagramProfileUrl && (
+                    <SocialIcon
+                      className="social-icons"
+                      url={user.instagramProfileUrl}
+                    />
+                  )}
+                </div>
+              </div>
+            ) : null}
+          </div>
         </div>
         <Slider className="alumni-slider" {...settings}>
-            {photos.map((index) => {
-                return (
-                    <div className="slider-component" id={index}>
-                        <img className="slider-img" src={`${CONSTANTS.DO_BUCKET_URL}${user.photos[index]}`}></img>
-                    </div>
-                )
-            }
-            )}
+          {photos.map((index) => {
+            return (
+              <div className="slider-component" id={index}>
+                <img
+                  className="slider-img"
+                  src={`${CONSTANTS.DO_BUCKET_URL}${user.photos[index]}`}
+                ></img>
+              </div>
+            );
+          })}
         </Slider>
-      </div>
-      <div className="alumni-cards">
-        <div className="alumni-card">
-          <div>
-            <h2 className="alumni-card-heading">CALL ME</h2>
-          </div>
-          <p>{user.phoneNumber}</p>
-        </div>
-        <div className="alumni-card">
-          <div>
-            <h2 className="alumni-card-heading">ADDRESS</h2>
-          </div>
-          <p>{user.address}</p>
-        </div>
-        <div className="alumni-card">
-          <div>
-            <h2 className="alumni-card-heading">SOCIAL LINKS</h2>
-          </div>
-          <div className="branch-card-social">
-            <SocialIcon className="social-icons" url="https://twitter.com/" />
-            <SocialIcon className="social-icons" url="https://instagram.com/" />
-            <SocialIcon className="social-icons" url="https://facebook.com/" />
-          </div>
-        </div>
       </div>
     </div>
   );

@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import "../style/register.css";
 import axios from "axios";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import Modal from "react-modal";
 import { useNavigate } from "react-router-dom";
 import { constants } from "../constant";
@@ -32,27 +32,31 @@ export const Register = () => {
   const CONSTANTS = constants();
 
   const handleOtpSubmit = async (event) => {
-
     event.preventDefault();
-    axios.post(`${CONSTANTS.API_BASE_URL}verify/user/${user._id}`, { "otp": otp }, {
-      headers: {
-        'Content-Type': 'application/JSON'
-      }
-    })
-    .then((res) => {
-      setModalIsOpen(false);
-      toast.success('Email verified successful !', {
-        position: toast.POSITION.TOP_RIGHT
-    });
-    navigate('/login');
-    })
-    .catch((err) => {
-      console.log(err);
-      toast.error('Incorrect OTP !', {
-        position: toast.POSITION.TOP_RIGHT
-    });
-    })
-  }
+    axios
+      .post(
+        `${CONSTANTS.API_BASE_URL}verify/user/${user._id}`,
+        { otp: otp },
+        {
+          headers: {
+            "Content-Type": "application/JSON",
+          },
+        }
+      )
+      .then((res) => {
+        setModalIsOpen(false);
+        toast.success("Email verified successful !", {
+          position: toast.POSITION.TOP_RIGHT,
+        });
+        navigate("/login");
+      })
+      .catch((err) => {
+        console.log(err);
+        toast.error("Incorrect OTP !", {
+          position: toast.POSITION.TOP_RIGHT,
+        });
+      });
+  };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -73,36 +77,37 @@ export const Register = () => {
     formData.append("aboutMe", aboutMe);
     formData.append("password", password);
 
-    for(let i=0; i<photos.length; i++) {
-        formData.append("photos", photos[i]);
+    for (let i = 0; i < photos.length; i++) {
+      formData.append("photos", photos[i]);
     }
-    axios.post(`${CONSTANTS.API_BASE_URL}register`, formData, {
+    axios
+      .post(`${CONSTANTS.API_BASE_URL}register`, formData, {
         headers: {
-            "Content-Type": "multipart/form-data"
-        }
-    })
-    .then((res) => {
-        console.log(res)
-        if(res.status === 200) {
-            toast.success('Registration successful !', {
-                position: toast.POSITION.TOP_RIGHT
-            });
-            localStorage.setItem("user", JSON.stringify(res.data.user));
-            setUser(res.data.user)
-            setModalIsOpen(true);
+          "Content-Type": "multipart/form-data",
+        },
+      })
+      .then((res) => {
+        console.log(res);
+        if (res.status === 200) {
+          toast.success("Registration successful !", {
+            position: toast.POSITION.TOP_RIGHT,
+          });
+          localStorage.setItem("user", JSON.stringify(res.data.user));
+          setUser(res.data.user);
+          // setModalIsOpen(true);
         } else {
-            console.log("Error occured", err);
-            toast.error('Registration failed !', {
-                position: toast.POSITION.TOP_RIGHT
-            });
+          console.log("Error occured", err);
+          toast.error("Registration failed !", {
+            position: toast.POSITION.TOP_RIGHT,
+          });
         }
-    })
-    .catch((err) => {
+      })
+      .catch((err) => {
         console.log("Error occured", err);
-        toast.error('Registration failed !', {
-            position: toast.POSITION.TOP_RIGHT
+        toast.error("Registration failed !", {
+          position: toast.POSITION.TOP_RIGHT,
         });
-    });
+      });
   };
 
   return (
@@ -278,17 +283,19 @@ export const Register = () => {
           ></textarea>
         </div>
         <div className="form-group">
-            <label htmlFor="password">Password:</label>
-            <input
-                type="password"
-                id="password"
-                name="password"
-                value={password}
-                onChange={(event) => setPassword(event.target.value)}
-                required
-            />
+          <label htmlFor="password">Password:</label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            value={password}
+            onChange={(event) => setPassword(event.target.value)}
+            required
+          />
         </div>
-        <button type="submit" onClick={handleSubmit}>Submit</button>
+        <button type="submit" onClick={handleSubmit}>
+          Submit
+        </button>
       </form>
       <ToastContainer />
       <Modal
@@ -312,4 +319,4 @@ export const Register = () => {
       </Modal>
     </div>
   );
-}
+};
