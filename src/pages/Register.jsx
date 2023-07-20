@@ -6,6 +6,7 @@ import "react-toastify/dist/ReactToastify.css";
 import Modal from "react-modal";
 import { useNavigate } from "react-router-dom";
 import { constants } from "../constant";
+import { validateFormFields } from "../services/validations";
 
 export const Register = () => {
   const navigate = useNavigate();
@@ -60,6 +61,23 @@ export const Register = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+
+    const validationError = validateFormFields(
+      firstName,
+      lastName,
+      rollNo,
+      branch,
+      gradYear,
+      phoneNumber,
+      email,
+      password
+    );
+    if (validationError)
+      return toast.error(validationError, {
+        position: toast.POSITION.TOP_RIGHT,
+        autoClose: 3000,
+      });
+
     const formData = new FormData();
     formData.append("firstName", firstName);
     formData.append("lastName", lastName);
@@ -89,11 +107,17 @@ export const Register = () => {
       .then((res) => {
         console.log(res);
         if (res.status === 200) {
-          toast.success("Registration successful !", {
-            position: toast.POSITION.TOP_RIGHT,
-          });
+          toast.success(
+            "Registration successful wait until admin verifies you!",
+            {
+              position: toast.POSITION.TOP_RIGHT,
+              autoClose: 5000,
+            }
+          );
           localStorage.setItem("user", JSON.stringify(res.data.user));
           setUser(res.data.user);
+          navigate("/login");
+
           // setModalIsOpen(true);
         } else {
           console.log("Error occured", err);
@@ -111,214 +135,231 @@ export const Register = () => {
   };
 
   return (
-    <div className="register-container">
-      <form onSubmit={handleSubmit}>
-        <div className="form-group">
-          <label htmlFor="firstName">First Name:</label>
-          <input
-            type="text"
-            id="firstName"
-            name="firstName"
-            value={firstName}
-            onChange={(event) => setFirstName(event.target.value)}
-            required
-          />
+    <div className="register-page">
+      <div className="register-container">
+        <div className="register-headings">
+          <h1 className="register-heading--primary">Register</h1>
+          <p>
+            Please fill all the details so you can have a good profile to share
+            with others
+          </p>
         </div>
-        <div className="form-group">
-          <label htmlFor="lastName">Last Name:</label>
-          <input
-            type="text"
-            id="lastName"
-            name="lastName"
-            value={lastName}
-            onChange={(event) => setLastName(event.target.value)}
-            required
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="rollNo">Roll No.:</label>
-          <input
-            type="text"
-            id="rollNo"
-            name="rollNo"
-            value={rollNo}
-            onChange={(event) => setRollNo(event.target.value)}
-            required
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="branch">Branch:</label>
-          <select
-            id="branch"
-            name="branch"
-            value={branch}
-            className="py-2 px-1"
-            onChange={(event) => setBranch(event.target.value)}
-            required
+        <form className="register-form" onSubmit={handleSubmit}>
+          <div className="form-group">
+            <label htmlFor="firstName">First Name:</label>
+            <input
+              type="text"
+              id="firstName"
+              name="firstName"
+              value={firstName}
+              onChange={(event) => setFirstName(event.target.value)}
+              required
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="lastName">Last Name:</label>
+            <input
+              type="text"
+              id="lastName"
+              name="lastName"
+              value={lastName}
+              onChange={(event) => setLastName(event.target.value)}
+              required
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="rollNo">Roll No.:</label>
+            <input
+              type="text"
+              id="rollNo"
+              name="rollNo"
+              value={rollNo}
+              onChange={(event) => setRollNo(event.target.value)}
+              required
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="branch">Branch:</label>
+            <select
+              id="branch"
+              name="branch"
+              value={branch}
+              className="py-2 px-1"
+              onChange={(event) => setBranch(event.target.value)}
+              required
+            >
+              <option value="">Select Branch</option>
+              <option value="CSE">Computer Science Engineering</option>
+              <option value="ME">Mechanical Engineering</option>
+              <option value="CE">Civil Engineering</option>
+              <option value="IT">Information Technology</option>
+              <option value="EE">Electrical Engineering</option>
+              <option value="ECE">
+                Electronics and Communication Engineering
+              </option>
+            </select>
+          </div>
+          <div className="form-group">
+            <label htmlFor="gradYear">Graduation Year:</label>
+            <input
+              type="number"
+              id="gradYear"
+              name="gradYear"
+              value={gradYear}
+              onChange={(event) => setGradYear(event.target.value)}
+              required
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="phoneNumber">Phone Number:</label>
+            <input
+              type="tel"
+              id="phoneNumber"
+              name="phoneNumber"
+              value={phoneNumber}
+              onChange={(event) => setPhoneNumber(event.target.value)}
+              required
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="address">Address:</label>
+            <textarea
+              id="address"
+              name="address"
+              className=""
+              value={address}
+              onChange={(event) => setAddress(event.target.value)}
+              required
+            ></textarea>
+          </div>
+          <div className="form-group">
+            <label htmlFor="country">Country:</label>
+            <input
+              type="text"
+              id="country"
+              name="country"
+              value={country}
+              onChange={(event) => setCountry(event.target.value)}
+              required
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="pincode">Pincode:</label>
+            <input
+              type="text"
+              id="pincode"
+              name="pincode"
+              value={pincode}
+              onChange={(event) => setPincode(event.target.value)}
+              required
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="email">Email:</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              value={email}
+              onChange={(event) => setEmail(event.target.value)}
+              required
+            />
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="twitterProfile">Twitter Profile URL:</label>
+            <input
+              type="url"
+              id="twitterProfile"
+              name="twitterProfile"
+              value={twitterProfile}
+              onChange={(event) => setTwitterProfile(event.target.value)}
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="instagramProfile">Instagram Profile URL:</label>
+            <input
+              type="url"
+              id="instagramProfile"
+              name="instagramProfile"
+              value={instagramProfile}
+              onChange={(event) => setInstagramProfile(event.target.value)}
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="facebookProfile">Facebook Profile URL:</label>
+            <input
+              type="url"
+              id="facebookProfile"
+              name="facebookProfile"
+              value={facebookProfile}
+              onChange={(event) => setFacebookProfile(event.target.value)}
+            />
+          </div>
+
+          <div className="form-group ">
+            <label htmlFor="password">Password:</label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              value={password}
+              onChange={(event) => setPassword(event.target.value)}
+              required
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="photos">Photos:</label>
+            <input
+              type="file"
+              id="photos"
+              name="photos"
+              multiple
+              onChange={(event) => setPhotos(Array.from(event.target.files))}
+              required
+            />
+          </div>
+          <div className="form-group col-span-2">
+            <label htmlFor="aboutMe">Tell Us About Yourself:</label>
+            <textarea
+              id="aboutMe"
+              name="aboutMe"
+              value={aboutMe}
+              rows={3}
+              className="p-2"
+              onChange={(event) => setAboutMe(event.target.value)}
+              required
+            ></textarea>
+          </div>
+          <button
+            className="register-btn "
+            type="submit"
+            onClick={handleSubmit}
           >
-            <option value="">Select Branch</option>
-            <option value="CSE">Computer Science Engineering</option>
-            <option value="ME">Mechanical Engineering</option>
-            <option value="CE">Civil Engineering</option>
-            <option value="IT">Information Technology</option>
-            <option value="EE">Electrical Engineering</option>
-            <option value="ECE">
-              Electronics and Communication Engineering
-            </option>
-          </select>
-        </div>
-        <div className="form-group">
-          <label htmlFor="gradYear">Graduation Year:</label>
-          <input
-            type="number"
-            id="gradYear"
-            name="gradYear"
-            value={gradYear}
-            onChange={(event) => setGradYear(event.target.value)}
-            required
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="phoneNumber">Phone Number:</label>
-          <input
-            type="tel"
-            id="phoneNumber"
-            name="phoneNumber"
-            value={phoneNumber}
-            onChange={(event) => setPhoneNumber(event.target.value)}
-            required
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="address">Address:</label>
-          <textarea
-            id="address"
-            name="address"
-            value={address}
-            onChange={(event) => setAddress(event.target.value)}
-            required
-          ></textarea>
-        </div>
-        <div className="form-group">
-          <label htmlFor="country">Country:</label>
-          <input
-            type="text"
-            id="country"
-            name="country"
-            value={country}
-            onChange={(event) => setCountry(event.target.value)}
-            required
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="pincode">Pincode:</label>
-          <input
-            type="text"
-            id="pincode"
-            name="pincode"
-            value={pincode}
-            onChange={(event) => setPincode(event.target.value)}
-            required
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="email">Email:</label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            value={email}
-            onChange={(event) => setEmail(event.target.value)}
-            required
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="photos">Photos:</label>
-          <input
-            type="file"
-            id="photos"
-            name="photos"
-            multiple
-            onChange={(event) => setPhotos(Array.from(event.target.files))}
-            required
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="twitterProfile">Twitter Profile URL:</label>
-          <input
-            type="url"
-            id="twitterProfile"
-            name="twitterProfile"
-            value={twitterProfile}
-            onChange={(event) => setTwitterProfile(event.target.value)}
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="instagramProfile">Instagram Profile URL:</label>
-          <input
-            type="url"
-            id="instagramProfile"
-            name="instagramProfile"
-            value={instagramProfile}
-            onChange={(event) => setInstagramProfile(event.target.value)}
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="facebookProfile">Facebook Profile URL:</label>
-          <input
-            type="url"
-            id="facebookProfile"
-            name="facebookProfile"
-            value={facebookProfile}
-            onChange={(event) => setFacebookProfile(event.target.value)}
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="aboutMe">Tell Us About Yourself:</label>
-          <textarea
-            id="aboutMe"
-            name="aboutMe"
-            value={aboutMe}
-            className="p-2"
-            onChange={(event) => setAboutMe(event.target.value)}
-            required
-          ></textarea>
-        </div>
-        <div className="form-group">
-          <label htmlFor="password">Password:</label>
-          <input
-            type="password"
-            id="password"
-            name="password"
-            value={password}
-            onChange={(event) => setPassword(event.target.value)}
-            required
-          />
-        </div>
-        <button type="submit" onClick={handleSubmit}>
-          Submit
-        </button>
-      </form>
-      <ToastContainer />
-      <Modal
-        isOpen={modalIsOpen}
-        onRequestClose={() => setModalIsOpen(false)}
-        contentLabel="Example Modal"
-        className="modal"
-      >
-        <div className="form-group">
-          <label htmlFor="otp">OTP:</label>
-          <input
-            type="text"
-            id="otp"
-            name="otp"
-            value={otp}
-            onChange={(event) => setOtp(event.target.value)}
-            required
-          />
-          <button onClick={handleOtpSubmit}>Submit</button>
-        </div>
-      </Modal>
+            Submit
+          </button>
+        </form>
+        <ToastContainer />
+        <Modal
+          isOpen={modalIsOpen}
+          onRequestClose={() => setModalIsOpen(false)}
+          contentLabel="Example Modal"
+          className="modal"
+        >
+          <div className="form-group">
+            <label htmlFor="otp">OTP:</label>
+            <input
+              type="text"
+              id="otp"
+              name="otp"
+              value={otp}
+              onChange={(event) => setOtp(event.target.value)}
+              required
+            />
+            <button onClick={handleOtpSubmit}>Submit</button>
+          </div>
+        </Modal>
+      </div>
     </div>
   );
 };

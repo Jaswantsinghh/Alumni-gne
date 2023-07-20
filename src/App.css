@@ -8,6 +8,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  overflow-x: hidden;
 }
 
 .navbar {
@@ -418,15 +419,6 @@
 .register-heading {
   color: rgb(32, 32, 32);
   text-align: center;
-}
-
-.register-form {
-  padding: 60px;
-  padding-bottom: 24px;
-  background-color: rgb(58, 145, 173);
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 24px;
 }
 
 .register-input {

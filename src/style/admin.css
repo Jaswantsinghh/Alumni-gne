@@ -1,67 +1,72 @@
 .admin-table {
-    width: 100%;
-    margin: 24px;
+  width: 100%;
+  margin: 24px;
 }
 
 table {
-    border-collapse: collapse;
-    width: 100%;
-    }
-    
-    th, td {
-    padding: 8px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
-    }
-    
-    th {
-    background-color: #f2f2f2;
-    }
-    
-    tr:hover {
-    background-color: #f5f5f5;
-    }
-    
-    button {
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    padding: 8px 16px;
-    cursor: pointer;
-    }
-    
-    button:hover {
-    background-color: #3e8e41;
-    }
-    
-    button:active {
-    background-color: #3e8e41;
-    box-shadow: 0 5px #666;
-    transform: translateY(4px);
-    }
-    
-    button:focus {
-    outline: none;
-    }
-    
-    .unverified {
-    background-color: #4CAF50;
-    }
-    
-    .verified {
-    background-color: #f44336;
-    }
+  border-collapse: collapse;
+  width: 100%;
+}
 
-    .view-more {
-        background-color: yellow;
-        color: black;
-    }
+th,
+td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
 
-    .view-more:hover {
-        background-color: #f5f5f5;
-    }
+th {
+  background-color: #f2f2f2;
+}
 
-    .modal {
-        background-color: white;
-        padding: 24px;
-    }
+tr:hover {
+  background-color: #f5f5f5;
+}
+
+button {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #3e8e41;
+}
+
+button:active {
+  background-color: #3e8e41;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+
+button:focus {
+  outline: none;
+}
+
+.unverified {
+  background-color: #4caf50;
+}
+
+.verified {
+  background-color: #f44336;
+}
+
+.view-more {
+  background-color: yellow;
+  color: black;
+}
+
+.view-more:hover {
+  background-color: #f5f5f5;
+}
+
+.modal {
+  background-color: rgba(0, 0, 0, 0.3);
+  height: 100%;
+  padding: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

@@ -5,6 +5,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { useStoreActions } from "easy-peasy";
 import { useNavigate } from "react-router-dom";
 import { constants } from "../constant";
+import { validateLoginFormFields } from "../services/validations";
 
 export const Login = () => {
   const [email, setEmail] = useState("");
@@ -19,6 +20,15 @@ export const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log("inside handel submit");
+
+    const validationError = validateLoginFormFields(email, password);
+
+    if (validationError) {
+      toast.error(validationError, {
+        position: toast.POSITION.TOP_RIGHT,
+      });
+      return;
+    }
 
     try {
       const response = await axios.post(`${CONSTANTS.API_BASE_URL}login`, {

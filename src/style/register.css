@@ -1,72 +1,100 @@
 .register-container {
-    max-width: 500px;
-    margin-top: 200px;
-    margin: 60px auto;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    }
-    
-    .form-group {
-    margin-bottom: 20px;
-    }
-    
-    label {
-    display: block;
-    margin-bottom: 5px;
-    }
-    
-    input[type="text"],
-    input[type="number"],
-    input[type="tel"],
-    input[type="email"],
-    input[type="url"],
-    input[type="password"],
-    textarea{
-        width: 100%;
-        padding: 10px;
-        font-size: 16px;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        }
-        
-        select {
-        width: 100%;
-        padding: 10px;
-        font-size: 16px;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        background-color: #fff;
-        }
-        
-        textarea {
-        width: 100%;
-        padding: 10px;
-        font-size: 16px;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        }
-        
-        button[type="submit"] {
-        display: block;
-        margin: 20px auto 0;
-        padding: 10px 20px;
-        font-size: 16px;
-        background-color: #007bff;
-        color: #fff;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        }
-        
-        button[type="submit"]:hover {
-        background-color: #0062cc;
-        }
-        
-        .error-message {
-        color: red;
-        font-size: 14px;
-        margin-top: 5px;
-        }
-        
-        
+  max-width: 500px;
+  margin-top: 200px;
+  margin: 60px auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="tel"],
+input[type="email"],
+input[type="url"],
+input[type="password"],
+textarea {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+select {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #fff;
+}
+
+textarea {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+button[type="submit"] {
+  display: block;
+  margin: 20px auto 0;
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button[type="submit"]:hover {
+  background-color: #0062cc;
+}
+
+.error-message {
+  color: red;
+  font-size: 14px;
+  margin-top: 5px;
+}
+
+.register-container {
+  max-width: 46rem;
+  width: 100%;
+
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px,
+    rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+}
+
+.register-container .register-form {
+  margin-top: 1rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: 1rem;
+  background-color: white;
+  gap: 0.8rem;
+}
+
+.register-btn {
+  width: 100%;
+  grid-column: span 2 / span 2;
+}
+
+.register-headings {
+  padding-top: 1rem;
+  padding-left: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}

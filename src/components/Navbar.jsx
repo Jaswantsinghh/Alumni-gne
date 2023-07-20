@@ -20,7 +20,7 @@ export const Navbar = () => {
     window.location.href = "/";
   };
   return (
-    <header className="text-gray-600 body-font">
+    <header className="text-gray-600 body-font shadow-md">
       <div className="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
         <Link
           to={"/"}
@@ -96,8 +96,8 @@ export const Navbar = () => {
                 fill="none"
                 stroke="currentColor"
                 strokeLinecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
+                strokeLinejoin="round"
+                strokeWidth="2"
                 className="w-4 h-4 ml-1"
                 viewBox="0 0 24 24"
               ></svg>
