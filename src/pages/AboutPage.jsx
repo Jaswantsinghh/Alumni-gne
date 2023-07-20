@@ -5,11 +5,9 @@ function AboutPage() {
     <section className="text-gray-600 body-font">
       <div className="container px-5 py-24 mx-auto">
         <h1 className="sm:text-3xl text-lg font-medium text-center text-gray-900 mb-20">
-          Welcome to Eventify, the ultimate project management system
-          <br className="hidden sm:block" />
-          for organizing and executing successful events.
+          About Page is under construction
         </h1>
-        <div className="flex flex-wrap sm:-m-4 -mx-4 -mb-10 -mt-4 md:space-y-0 space-y-6">
+        {/* <div className="flex flex-wrap sm:-m-4 -mx-4 -mb-10 -mt-4 md:space-y-0 space-y-6">
           <div className="p-4 md:w-1/3 flex">
             <div className="w-12 h-12 inline-flex items-center justify-center rounded-full bg-indigo-100 text-indigo-500 mb-4 flex-shrink-0">
               <svg
@@ -133,7 +131,7 @@ function AboutPage() {
               </a>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
     </section>
   );

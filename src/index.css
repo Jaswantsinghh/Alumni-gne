@@ -3,10 +3,16 @@
 @tailwind utilities;
 
 @layer utilities {
-  .active-link {
+  /* .active-link {
     border-bottom: 1px solid indigo;
+
     border-radius: none !important;
-  }
+    @apply hover:bg-indigo-600;
+  } */
+}
+
+.active-link {
+  @apply bg-indigo-600 !text-white;
 }
 
 :root {

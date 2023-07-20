@@ -1,11 +1,11 @@
 import Engineering from "../images/engineering.png";
 import BranchCard from "../components/BranchCard";
-import CSEBranch from "../images/cse-branch.jpeg";
+import CSEBranch from "../images/cse-branch.avif";
 import MEBranch from "../images/mechanical-branch.jpeg";
 import CEBranch from "../images/civil-branch.jpeg";
 import ECEBranch from "../images/ece-branch.jpeg";
-import EEBranch from "../images/ee-branch.jpeg";
-import ITBranch from "../images/it-branch.jpeg";
+import EEBranch from "../images/ee-branch.avif";
+import ITBranch from "../images/it-branch.png";
 
 const BRANCHES = [
   {
@@ -25,16 +25,16 @@ const BRANCHES = [
   },
   {
     branchName: "Electrical",
-    branchIcon: ECEBranch,
+    branchIcon: EEBranch,
     navigateUrl: "EE",
   },
   {
-    branchName: "Electronics and Communication",
-    branchIcon: EEBranch,
+    branchName: "ECE",
+    branchIcon: ECEBranch,
     navigateUrl: "ECE",
   },
   {
-    branchName: "Information Technology",
+    branchName: "IT",
     branchIcon: ITBranch,
     navigateUrl: "IT",
   },

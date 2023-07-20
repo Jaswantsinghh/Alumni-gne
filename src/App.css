@@ -63,7 +63,9 @@
 
 .home-pic-container {
   position: relative;
+  max-height: 38rem;
   z-index: 10;
+  overflow: hidden;
 }
 
 .home-pic {
@@ -81,9 +83,8 @@
   justify-content: center;
   align-items: center;
   background-color: rgba(0, 0, 0, 0.7);
-  font-size: 60px;
-  font-weight: 600;
-  padding: 240px;
+
+  padding: 100px;
   line-height: 60px;
   text-align: center;
 }
@@ -100,7 +101,7 @@
 }
 
 .home-branch-container {
-  padding: 60px 0;
+  /* padding: 60px 0; */
   color: rgb(32, 32, 32);
   display: flex;
   flex-direction: column;
@@ -202,7 +203,7 @@
 
 .branch-card:hover {
   transform: scale(1.05);
-  box-shadow: 0px 0px 12px 4px #888888;
+  box-shadow: 0px 0px 12px 4px rgba(0, 0, 0, 0.2);
 }
 
 .branch-card-avatar {
@@ -225,7 +226,7 @@
 .branch-card-social {
   display: flex;
   gap: 24px;
-  margin-bottom: 0;
+  /* margin-bottom: 0; */
 }
 
 .footer {
@@ -266,7 +267,7 @@
 
 .branches-card:hover {
   transform: scale(1.05);
-  box-shadow: 0px 0px 12px 4px #888888;
+  box-shadow: 0px 0px 12px 4px rgba(0, 0, 0, 0.2);
 }
 
 .branch-name {
@@ -387,10 +388,11 @@
 }
 
 .alumni-card {
-  background-color: rgb(58, 145, 173);
+  background-color: rgb(79 70 229);
   padding: 16px;
   border-radius: 24px;
   width: 300px;
+  color: white;
 }
 
 .social-icons {
@@ -399,7 +401,8 @@
 }
 
 .alumni-card-heading {
-  font-size: 12px;
+  font-size: 16px;
+  font-weight: 600;
 }
 
 .alumni-card p {

@@ -30,10 +30,10 @@ export const Navbar = () => {
 
           <span className="ml-3 text-xl">Genco 6973 Golden Jubilee</span>
         </Link>
-        <nav className="md:ml-auto flex flex-wrap items-center text-base justify-center">
+        <nav className="md:ml-auto flex gap-1 items-center text-base justify-center">
           <Link
             to={"/"}
-            className={`mr-5 py-2 px-4 hover:text-white hover:bg-indigo-600 rounded ${
+            className={` py-2 px-4 hover:text-white hover:bg-indigo-600 rounded ${
               location.pathname === "/" ? "active-link" : ""
             }`}
           >
@@ -41,7 +41,7 @@ export const Navbar = () => {
           </Link>
           <Link
             to={"/branches"}
-            className={`mr-5 py-2 px-4 hover:text-white hover:bg-indigo-600 rounded ${
+            className={` py-2 px-4 hover:text-white hover:bg-indigo-600 rounded ${
               location.pathname === "/branches" ? "active-link" : ""
             }`}
           >
@@ -49,16 +49,24 @@ export const Navbar = () => {
           </Link>
           <Link
             to={"/about"}
-            className={`mr-5 py-2 px-4 hover:text-white hover:bg-indigo-600 rounded ${
+            className={` py-2 px-4 hover:text-white hover:bg-indigo-600 rounded ${
               location.pathname === "/about" ? "active-link" : ""
             }`}
           >
             About
           </Link>
+          <Link
+            to={"/contact"}
+            className={` py-2 px-4 hover:text-white hover:bg-indigo-600 rounded ${
+              location.pathname === "/contact" ? "active-link" : ""
+            }`}
+          >
+            Contact
+          </Link>
           {!user?.token && (
             <Link
               to={"/register"}
-              className={`mr-5 py-2 px-4 hover:text-white hover:bg-indigo-600 rounded ${
+              className={` py-2 px-4 hover:text-white hover:bg-indigo-600 rounded ${
                 location.pathname === "/register" ? "active-link" : ""
               }`}
             >
@@ -67,8 +75,12 @@ export const Navbar = () => {
           )}
           <Link
             to={user?.token ? "/profile" : "/login"}
-            className={`mr-5 py-2 px-4 hover:text-white hover:bg-indigo-600 rounded ${
-              location.pathname === "/profile" ? "active-link" : ""
+            className={` py-2 px-4 hover:text-white hover:bg-indigo-600 rounded ${
+              location.pathname === "/profile"
+                ? "active-link"
+                : location.pathname === "/login"
+                ? "active-link"
+                : ""
             }`}
           >
             {user?.token ? "Profile" : "Login"}
@@ -77,7 +89,7 @@ export const Navbar = () => {
           {user?.token && (
             <button
               onClick={onLogOut}
-              className="inline-flex items-center bg-gray-100 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0"
+              className="inline-flex items-center bg-gray-100 border-0 py-1 px-3 focus:outline-none rounded text-base mt-4 md:mt-0"
             >
               Logout
               <svg

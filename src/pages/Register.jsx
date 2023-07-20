@@ -152,6 +152,7 @@ export const Register = () => {
             id="branch"
             name="branch"
             value={branch}
+            className="py-2 px-1"
             onChange={(event) => setBranch(event.target.value)}
             required
           >
@@ -273,11 +274,12 @@ export const Register = () => {
           />
         </div>
         <div className="form-group">
-          <label htmlFor="aboutMe">Tell Me About Yourself:</label>
+          <label htmlFor="aboutMe">Tell Us About Yourself:</label>
           <textarea
             id="aboutMe"
             name="aboutMe"
             value={aboutMe}
+            className="p-2"
             onChange={(event) => setAboutMe(event.target.value)}
             required
           ></textarea>

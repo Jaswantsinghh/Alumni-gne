@@ -14,6 +14,8 @@ import "./App.css";
 import { Routes, Route } from "react-router-dom";
 import { StoreProvider } from "easy-peasy";
 import { store } from "./store/store";
+import { SearchPage } from "./pages/Search";
+import ContactPage from "./pages/ContactPage";
 
 function App() {
   return (
@@ -23,7 +25,9 @@ function App() {
           <Navbar />
           <Routes>
             <Route path="/" element={<Homepage />} />
+            <Route path="/search/:searchUrl" element={<SearchPage />} />
             <Route path="/about" element={<AboutPage />} />
+            <Route path="/contact" element={<ContactPage />} />
 
             <Route path="/branches" element={<Branches />} />
             <Route path="/batches/:branch" element={<Batch />} />

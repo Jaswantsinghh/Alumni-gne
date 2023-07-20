@@ -10,7 +10,10 @@ function BranchCard({ branchName, branchIcon, naviagteUrl }) {
   };
 
   return (
-    <div className="branches-card" onClick={() => onClick(naviagteUrl)}>
+    <div
+      className="branches-card transition-all"
+      onClick={() => onClick(naviagteUrl)}
+    >
       <p className="branch-name mb-4">{branchName}</p>
       <img className="branch-icon rounded w-full" src={branchIcon}></img>
     </div>

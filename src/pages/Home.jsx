@@ -28,6 +28,7 @@ export const Homepage = () => {
   };
 
   const [user, setUser] = useState("");
+  const [searchValue, setSearchValue] = useState("");
 
   useEffect(() => {
     if (!user?.token) {
@@ -44,42 +45,92 @@ export const Homepage = () => {
       );
       const data = await res.json();
       console.log(data);
-      const slicedData = data.slice(0, 4);
+      const slicedData = data.slice(0, 8);
       setFeaturedUsers(slicedData);
     };
     featureUsers();
   }, []);
 
+  const hanldeSearch = async (e) => {
+    e.preventDefault();
+    navigateTo(`/search/${searchValue}`);
+  };
+
   return (
-    <div className="home">
+    <div className="home ">
       <div className="home-pic-container">
         <img className="home-pic" src={grad} />
-        <div className="home-pic-overlay">
-          <p style={{ color: "white" }}>
+        <form className="home-pic-overlay " onSubmit={hanldeSearch}>
+          <p
+            style={{ color: "white" }}
+            className="text-5xl w-3/4 font-medium text-center text-gray-900 mb-8"
+          >
             Celebrating the Golden Jubliee of GNDEC graduated batch of 1973.
           </p>
-          {!user?.token && (
-            <button
-              onClick={() => {
-                navigateTo("/register");
-              }}
-              class="flex mx-auto mt-16 text-white bg-indigo-500 border-0 py-4 px-8 focus:outline-none hover:bg-indigo-600 rounded text-xl"
+          <div class="w-[60%] mx-auto">
+            <div class="relative flex items-center w-full h-14 rounded-lg focus-within:shadow-lg bg-white overflow-hidden">
+              <div class="grid place-items-center h-full w-14  text-gray-300">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-6 w-6"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                  />
+                </svg>
+              </div>
+
+              <input
+                class="peer h-full w-full outline-none text-sm text-gray-700 pr-2"
+                type="text"
+                id="search"
+                value={searchValue}
+                onChange={(e) => setSearchValue(e.target.value)}
+                placeholder="Search here.."
+              />
+            </div>
+          </div>
+
+          <button
+            // onClick={}
+            type="submit"
+            class="flex items-center gap-4  mt-6 text-white bg-indigo-600 border-0 py-4 px-4 focus:outline-none hover:bg-indigo-700 rounded text-xl"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-6 w-6 inline-flex mr-2"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
             >
-              Register Now
-            </button>
-          )}
-        </div>
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+              />
+            </svg>
+            <span className="inline-flex mt-1">Search</span>
+          </button>
+        </form>
       </div>
-      <div className="home-branch-container">
+      <div className="home-branch-container mt-12">
         <h1 className="text-3xl text-bold font-serif">
           Featured Alumni from 1973 Batch
         </h1>
-        <div className="grid grid-cols-4 gap-8 py-14">
+        <div className="grid grid-cols-4 grid-rows-2 gap-8 py-14">
           {featuredUsers &&
             featuredUsers.map((user) => {
               return (
                 <FeatureCard
                   key={user._id}
+                  id={user._id}
                   name={user.firstName + user?.lastName}
                   branch={`${user?.branch} ${user?.graduationYear}`}
                   avatar={user?.photos.length > 0 && user?.photos[0]}
