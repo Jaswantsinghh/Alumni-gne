@@ -472,3 +472,43 @@
   border: 1px solid #ccc;
   border-radius: 5px;
 }
+
+@media (max-width: 450px) {
+  .branches-heading {
+    font-size: 1.6rem;
+  }
+  .branches-card-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 4rem;
+  }
+  .branches-card {
+    padding: 0;
+  }
+
+  .branches-card:hover {
+    transform: none;
+    box-shadow: none;
+  }
+}
+
+@media (max-width: 450px) {
+  .alumni-body {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+  .alumni-details,
+  .alumni-slider {
+    width: 100%;
+  }
+
+  .home-pic-container {
+    height: 24rem;
+  }
+  .home-pic {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+  }
+}

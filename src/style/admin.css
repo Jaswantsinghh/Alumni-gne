@@ -70,3 +70,16 @@ button:focus {
   justify-content: center;
   align-items: center;
 }
+
+@media (max-width: 450px) {
+  .admin-table {
+    margin: 4px;
+    overflow-x: scroll;
+  }
+
+  th,
+  td {
+    font-size: 10px;
+    padding: 6px;
+  }
+}

@@ -43,7 +43,7 @@ const BRANCHES = [
 export const Branches = () => {
   return (
     <div className="branches">
-      <h1 className="branches-heading text-4xl mt-8">Explore By Branches</h1>
+      <h1 className="branches-heading md:text-4xl mt-8">Explore By Branches</h1>
       <div className="branches-card-container">
         {BRANCHES.map(({ branchIcon, branchName, navigateUrl }) => (
           <BranchCard

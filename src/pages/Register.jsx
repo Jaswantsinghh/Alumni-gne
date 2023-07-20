@@ -138,13 +138,15 @@ export const Register = () => {
     <div className="register-page">
       <div className="register-container">
         <div className="register-headings">
-          <h1 className="register-heading--primary">Register</h1>
-          <p>
+          <h1 className="register-heading--primary text-xl md:text-2xl">
+            Register
+          </h1>
+          <p className="text-sm md:text-base">
             Please fill all the details so you can have a good profile to share
             with others
           </p>
         </div>
-        <form className="register-form" onSubmit={handleSubmit}>
+        <form className="register-form grid-cols-1" onSubmit={handleSubmit}>
           <div className="form-group">
             <label htmlFor="firstName">First Name:</label>
             <input
@@ -156,7 +158,7 @@ export const Register = () => {
               required
             />
           </div>
-          <div className="form-group">
+          <div className="form-group ">
             <label htmlFor="lastName">Last Name:</label>
             <input
               type="text"

@@ -98,3 +98,26 @@ button[type="submit"]:hover {
   flex-direction: column;
   gap: 6px;
 }
+
+@media (max-width: 450px) {
+  .register-container {
+    max-width: 20rem;
+  }
+
+  .register-container .register-form {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    background-color: white;
+    gap: 0.8rem;
+  }
+  .register-form .form-group {
+    width: 100%;
+    margin-bottom: 0;
+  }
+  .form-group label,
+  input {
+    width: 100%;
+    height: inherit;
+  }
+}

@@ -57,22 +57,22 @@ export const Homepage = () => {
   };
 
   return (
-    <div className="home ">
+    <div className="home  ">
       <div className="home-pic-container">
         <img className="home-pic" src={grad} />
         <form className="home-pic-overlay " onSubmit={hanldeSearch}>
           <p
             style={{ color: "white" }}
-            className="text-5xl w-3/4 font-medium text-center text-gray-900 mb-8"
+            className="text-base w-full md:text-5xl md:w-3/4 font-medium text-center text-gray-900 mb-8"
           >
             Celebrating the Golden Jubliee of GNDEC graduated batch of 1973.
           </p>
-          <div className="w-[60%] mx-auto">
-            <div className="relative flex items-center w-full h-14 rounded-lg focus-within:shadow-lg bg-white overflow-hidden">
-              <div className="grid place-items-center h-full w-14  text-gray-300">
+          <div className="w-full md:w-[60%] mx-auto">
+            <div className="relative flex items-center w-full h-8 md:h-14 rounded-lg focus-within:shadow-lg bg-white overflow-hidden">
+              <div className="grid place-items-center h-full w-10 md:w-14  text-gray-300">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  className="h-6 w-6"
+                  className="h-4 w-4 md:h-6 md:w-6"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -87,7 +87,7 @@ export const Homepage = () => {
               </div>
 
               <input
-                className="peer h-full w-full outline-none text-sm text-gray-700 pr-2"
+                className="peer w-full md:h-full md:w-full outline-none text-xs md:text-sm py-2 text-gray-700 pr-2"
                 type="text"
                 id="search"
                 value={searchValue}
@@ -98,13 +98,12 @@ export const Homepage = () => {
           </div>
 
           <button
-            // onClick={}
             type="submit"
-            className="flex items-center gap-4  mt-6 text-white !bg-indigo-600 border-0 py-4 px-4 focus:outline-none hover:bg-indigo-700 rounded text-xl"
+            className="flex  md:items-center md:gap-4 md:h-auto md:w-auto  p-2 text-sm mt-6 text-white !bg-indigo-600 border-0 md:py-4 md:px-4 focus:outline-none hover:bg-indigo-700 rounded md:text-xl"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="h-6 w-6 inline-flex mr-2"
+              className="h-4 w-4 md:h-6 md:w-6 inline-flex mr-2"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -116,15 +115,17 @@ export const Homepage = () => {
                 d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
               />
             </svg>
-            <span className="inline-flex mt-1">Search</span>
+            <span className="md:inline-flex mt-1 leading-none text-sm">
+              Search
+            </span>
           </button>
         </form>
       </div>
       <div className="home-branch-container mt-12">
-        <h1 className="text-3xl text-bold font-serif">
+        <h1 className="text-lg md:text-3xl text-bold font-serif">
           Featured Alumni from 1973 Batch
         </h1>
-        <div className="grid grid-cols-4 grid-rows-2 gap-8 py-14">
+        <div className="grid grid-cols-1 md:grid-cols-4 md:grid-rows-2 gap-8 py-14">
           {featuredUsers &&
             featuredUsers.map((user) => {
               return (
@@ -142,11 +143,11 @@ export const Homepage = () => {
               );
             })}
         </div>
-        <div className="home-slider-container">
+        <div className="home-slider-container hidden md:block">
           <h1 className="text-3xl text-bold font-serif">
             A Glimpse of Golden Jublee of 1973 Batch
           </h1>
-          <Slider className="alumni-slider !z-10" {...settings}>
+          <Slider className=" alumni-slider !z-10" {...settings}>
             <div className="slider-component">
               <img className="slider-img" src={SliderOne}></img>
             </div>

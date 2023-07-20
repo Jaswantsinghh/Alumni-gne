@@ -86,7 +86,7 @@ export const Batch = () => {
           Search
         </button>
       </div>
-      <div className="grid mt-12 grid-cols-4 gap-6">
+      <div className="grid mt-12 grid-cols-1 md:grid-cols-4 gap-6">
         {filteredUsers.length === 0 && (
           <p className="text-center text-3xl">No results found</p>
         )}
