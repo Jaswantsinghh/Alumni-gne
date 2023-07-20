@@ -4,7 +4,6 @@ export function validateFormFields(
   rollNumber,
   branch,
   graduationYear,
-  phoneNumber,
   email,
   password
 ) {
@@ -12,7 +11,7 @@ export function validateFormFields(
   const rollNumberRegex = /^\d+$/;
   const branchRegex = /^[A-Za-z\s]+$/;
   const graduationYearRegex = /^(19|20)\d{2}$/;
-  const phoneRegex = /^\d{10}$/;
+
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   const passwordRegex = /^.{6,}$/; // Minimum 6 characters required
 
@@ -34,10 +33,6 @@ export function validateFormFields(
 
   if (!graduationYear || !graduationYear.match(graduationYearRegex)) {
     return "Please enter a valid graduation year. It should be between 1900 and the current year.";
-  }
-
-  if (!phoneNumber || !phoneNumber.match(phoneRegex)) {
-    return "Please enter a valid phone number. It should be a 10-digit number.";
   }
 
   if (!email || !email.match(emailRegex)) {

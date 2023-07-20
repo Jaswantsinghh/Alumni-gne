@@ -68,7 +68,6 @@ export const Register = () => {
       rollNo,
       branch,
       gradYear,
-      phoneNumber,
       email,
       password
     );

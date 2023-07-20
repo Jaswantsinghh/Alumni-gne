@@ -70,8 +70,20 @@ export const AdminPage = () => {
         });
       });
   };
-
-  useEffect(() => {
+  const handleDelete = (id) => {
+    console.log(id);
+    axios
+      .delete(`${CONSTANTS.API_BASE_URL}user/${id}`)
+      .then((res) => {
+        console.log(res);
+        toast.success("Deletion successful !");
+        fetchUsers();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+  const fetchUsers = () => {
     axios
       .get(`${CONSTANTS.API_BASE_URL}users`)
       .then((res) => {
@@ -80,7 +92,10 @@ export const AdminPage = () => {
       .catch((err) => {
         console.log(err);
       });
-  }, [handleVerify]);
+  };
+  useEffect(() => {
+    fetchUsers();
+  }, []);
 
   return (
     <div className="admin-table">
@@ -92,6 +107,7 @@ export const AdminPage = () => {
             <th>Roll No</th>
             <th>Branch</th>
             <th>Graduation Year</th>
+            <th>Updation Request</th>
             <th>More Details</th>
             <th>Verify/Unverify</th>
             <th>Edit</th>
@@ -106,6 +122,11 @@ export const AdminPage = () => {
               <td>{entry.rollNo}</td>
               <td>{entry.branch}</td>
               <td>{entry.graduationYear}</td>
+              <td>
+                {entry.updationReq && entry.updationReq === 1
+                  ? "Updated"
+                  : "New"}
+              </td>
 
               <td>
                 <button
@@ -156,6 +177,7 @@ export const AdminPage = () => {
                   height="800px"
                   viewBox="0 0 24 24"
                   fill="none"
+                  onClick={() => handleDelete(entry._id)}
                 >
                   <path
                     d="M4 7H20"
