@@ -28,7 +28,7 @@ export const Navbar = () => {
         >
           <img className="gne-logo" src={gne}></img>
 
-          <span className="ml-3 text-xl">Genco 6973 Golden Jubilee</span>
+          <span className="ml-3 text-xl">Genco 1969-73 Golden Jubilee</span>
         </Link>
         <nav className="md:ml-auto flex gap-1 items-center text-base justify-center">
           <Link

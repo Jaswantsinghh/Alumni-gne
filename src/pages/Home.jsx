@@ -92,7 +92,7 @@ export const Homepage = () => {
                 id="search"
                 value={searchValue}
                 onChange={(e) => setSearchValue(e.target.value)}
-                placeholder="Search here.."
+                placeholder="Search your name.."
               />
             </div>
           </div>
@@ -100,7 +100,7 @@ export const Homepage = () => {
           <button
             // onClick={}
             type="submit"
-            class="flex items-center gap-4  mt-6 text-white bg-indigo-600 border-0 py-4 px-4 focus:outline-none hover:bg-indigo-700 rounded text-xl"
+            class="flex items-center gap-4  mt-6 text-white !bg-indigo-600 border-0 py-4 px-4 focus:outline-none hover:bg-indigo-700 rounded text-xl"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -131,7 +131,7 @@ export const Homepage = () => {
                 <FeatureCard
                   key={user._id}
                   id={user._id}
-                  name={user.firstName + user?.lastName}
+                  name={user.firstName + " " + user?.lastName}
                   branch={`${user?.branch} ${user?.graduationYear}`}
                   avatar={user?.photos.length > 0 && user?.photos[0]}
                   description={user?.about}

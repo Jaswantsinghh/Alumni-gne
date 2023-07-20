@@ -25,7 +25,9 @@ function FeatureCard({
         </div>
         <p className="branch-card-branch">{branch}</p>
         <p className="text-xl mt-4">{name}</p>
-        <p className="text-gray-100 text-sm mt-2 line-clamp-1">{description}</p>
+        <p className="text-gray-100 text-sm mt-2 line-clamp-1 text-gray-600">
+          {description}
+        </p>
         <div className="branch-card-social mt-4">
           {twitterLink && <SocialIcon url={twitterLink} />}
           {instagramLink && <SocialIcon url={instagramLink} />}

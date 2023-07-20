@@ -18,24 +18,19 @@ export const Batch = () => {
     navigateTo(`/alumni/${id}`);
   };
 
-  const options = [
-    {
-      value: 1973,
-      label: "1973",
-    },
-    {
-      value: 1974,
-      label: "1974",
-    },
-    {
-      value: 1975,
-      label: "1975",
-    },
-    {
-      value: 1976,
-      label: "1976",
-    },
-  ];
+  function generateYearOptions() {
+    const currentYear = new Date().getFullYear();
+    const options = [];
+
+    for (let year = 1973; year <= currentYear; year++) {
+      options.push({
+        value: year,
+        label: String(year),
+      });
+    }
+
+    return options;
+  }
 
   useEffect(() => {
     axios
@@ -77,7 +72,7 @@ export const Batch = () => {
         <p className="batch-year">Batch Year</p>
         <Select
           className="batch-dropdown z-10"
-          options={options}
+          options={generateYearOptions()}
           onChange={(value) => handleSearchBatch(value.value, "select")}
         />
       </div>
@@ -97,12 +92,12 @@ export const Batch = () => {
         )}
         {filteredUsers.map((user) => {
           return (
-            <div className="h-[25rem]">
+            <div className="h-[26rem]">
               <FeatureCard
                 key={user._id}
                 id={user._id}
                 avatar={user?.photos.length > 0 && user?.photos[0]}
-                name={user.firstName + user?.lastName}
+                name={user.firstName + " " + user?.lastName}
                 branch={`${user?.branch} ${user?.graduationYear}`}
                 description={user?.about}
               />
