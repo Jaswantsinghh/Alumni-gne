@@ -6,11 +6,13 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
 import { constants } from "../constant";
+import ProfileModal from "../components/UpdateModal";
 
 export const AdminPage = () => {
   const navigate = useNavigate();
   const [data, setData] = useState([]);
   const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [profileModal, setProfileModal] = useState(false);
   const [selected, setSelected] = useState({});
   const CONSTANTS = constants();
 
@@ -28,6 +30,12 @@ export const AdminPage = () => {
   const handleView = (id) => {
     let entry = data.find((entry) => entry._id === id);
     setModalIsOpen(true);
+    setSelected(entry);
+  };
+
+  const handleUpdate = (id) => {
+    let entry = data.find((entry) => entry._id === id);
+    setProfileModal(true);
     setSelected(entry);
   };
 
@@ -77,7 +85,6 @@ export const AdminPage = () => {
       .then((res) => {
         console.log(res);
         toast.success("Deletion successful !");
-        fetchUsers();
       })
       .catch((err) => {
         console.log(err);
@@ -151,8 +158,10 @@ export const AdminPage = () => {
                 </button>
               </td>
               <td>
+                edit
                 <svg
-                  className="h-5 w-5"
+                  onClick={() => handleUpdate(entry._id)}
+                  className="h-5 w-5 cursor-pointer"
                   xmlns="http://www.w3.org/2000/svg"
                   fill="#000000"
                   version="1.1"
@@ -206,6 +215,9 @@ export const AdminPage = () => {
           ))}
         </tbody>
       </table>
+      {profileModal && (
+        <ProfileModal user={selected} setModalIsOpen={setProfileModal} />
+      )}
       <Modal
         isOpen={modalIsOpen}
         onRequestClose={() => setModalIsOpen(false)}
@@ -295,29 +307,6 @@ export const AdminPage = () => {
             Close Modal
           </button>
         </div>
-
-        {/* <h2>Student's Detail</h2>
-        {selected && (
-          <>
-            <p>First Name: {selected.firstName}</p>
-            <p>Last Name: {selected.lastName}</p>
-            <p>Roll No: {selected.rollNo}</p>
-            <p>Branch: {selected.branch}</p>
-            <p>Graduation Year: {selected.graduationYear}</p>
-            <p>Phone Number: {selected.phoneNumber}</p>
-            <p>Address: {selected.address}</p>
-            <p>Country: {selected.country}</p>
-            <p>Pincode: {selected.pincode}</p>
-            <p>Email: {selected.email}</p>
-            <p>Photos: {selected.photos?.join(", ")}</p>
-            <p>Twitter Profile Url: {selected.twitterProfileUrl}</p>
-            <p>Instagram Profile Url: {selected.instagramProfileUrl}</p>
-            <p>Facebook Profile Url: {selected.facebookProfileUrl}</p>
-            <p>About: {selected.about}</p>
-            <p>Is Verified: {selected.isVerified ? "Yes" : "No"}</p>
-          </>
-        )}
-        <button onClick={() => setModalIsOpen(false)}>Close Modal</button> */}
       </Modal>
       <ToastContainer />
     </div>

@@ -60,3 +60,46 @@ export function validateLoginFormFields(email, password) {
 
   return null;
 }
+
+export function updateFormValidations(
+  firstName,
+  lastName,
+  rollNumber,
+  branch,
+  graduationYear,
+  email
+) {
+  const nameRegex = /^[A-Za-z]+$/;
+  const rollNumberRegex = /^\d+$/;
+  const branchRegex = /^[A-Za-z\s]+$/;
+  const graduationYearRegex = /^(19|20)\d{2}$/;
+
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  if (!firstName || !firstName.match(nameRegex)) {
+    return "Please enter a valid first name. Only alphabets are allowed.";
+  }
+
+  if (!lastName || !lastName.match(nameRegex)) {
+    return "Please enter a valid last name. Only alphabets are allowed.";
+  }
+
+  if (!rollNumber || !rollNumber.match(rollNumberRegex)) {
+    return "Please enter a valid roll number. Only numeric characters are allowed.";
+  }
+
+  if (!branch || !branch.match(branchRegex)) {
+    return "Please enter a valid branch name. Only alphabets and spaces are allowed.";
+  }
+
+  if (!graduationYear) {
+    return "Please enter a valid graduation year.";
+  }
+
+  if (!email || !email.match(emailRegex)) {
+    return "Please enter a valid email address.";
+  }
+
+  // If all fields are valid, return null (indicating no errors)
+  return null;
+}

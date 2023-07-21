@@ -1,6 +1,7 @@
 .admin-table {
   width: 100%;
-  margin: 24px;
+  /* margin: 24px; */
+  padding: 2rem;
 }
 
 table {
@@ -73,7 +74,7 @@ button:focus {
 
 @media (max-width: 450px) {
   .admin-table {
-    margin: 4px;
+    /* margin: 4px; */
     overflow-x: scroll;
   }
 
