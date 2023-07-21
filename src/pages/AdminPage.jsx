@@ -11,8 +11,10 @@ import ProfileModal from "../components/UpdateModal";
 export const AdminPage = () => {
   const navigate = useNavigate();
   const [data, setData] = useState([]);
+  const [filteredData, setFilteredData] = useState([]);
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [profileModal, setProfileModal] = useState(false);
+  const [searchValue, setSearchValue] = useState("");
   const [selected, setSelected] = useState({});
   const CONSTANTS = constants();
 
@@ -95,6 +97,7 @@ export const AdminPage = () => {
       .get(`${CONSTANTS.API_BASE_URL}users`)
       .then((res) => {
         setData(res.data);
+        setFilteredData(res.data);
       })
       .catch((err) => {
         console.log(err);
@@ -104,8 +107,28 @@ export const AdminPage = () => {
     fetchUsers();
   }, []);
 
+  useEffect(() => {
+    const filteredUsers = data.filter((user) => {
+      const regex = new RegExp(searchValue, "i"); // 'i' flag for case-insensitive search
+      return regex.test(user.firstName) || regex.test(user.lastName);
+    });
+    setFilteredData(filteredUsers);
+  }, [searchValue]);
+
   return (
     <div className="admin-table">
+      <div>
+        <div className="flex justify-center mb-8 items-center max-w-lg md:w-full  text-gray-300">
+          <input
+            className="peer w-full md:h-full md:w-full outline-none text-xs md:text-sm py-2 text-gray-700 pr-2"
+            type="text"
+            id="search"
+            value={searchValue}
+            onChange={(e) => setSearchValue(e.target.value)}
+            placeholder="Search your name.."
+          />
+        </div>
+      </div>
       <table>
         <thead>
           <tr>
@@ -122,7 +145,7 @@ export const AdminPage = () => {
           </tr>
         </thead>
         <tbody>
-          {data.map((entry) => (
+          {filteredData.map((entry) => (
             <tr key={entry._id}>
               <td>{entry.firstName}</td>
               <td>{entry.lastName}</td>

@@ -115,7 +115,9 @@ export const Register = () => {
           );
           localStorage.setItem("user", JSON.stringify(res.data.user));
           setUser(res.data.user);
-          navigate("/login");
+          setTimeout(() => {
+            navigate("/login");
+          }, 5000);
 
           // setModalIsOpen(true);
         } else {
@@ -126,10 +128,17 @@ export const Register = () => {
         }
       })
       .catch((err) => {
-        console.log("Error occured", err);
-        toast.error("Registration failed !", {
-          position: toast.POSITION.TOP_RIGHT,
-        });
+        console.log(err);
+        if (err.response.status === 409) {
+          toast.error("Email already exists !", {
+            position: toast.POSITION.TOP_RIGHT,
+          });
+        } else {
+          console.log("Error occured", err);
+          toast.error("Registration failed !", {
+            position: toast.POSITION.TOP_RIGHT,
+          });
+        }
       });
   };
 

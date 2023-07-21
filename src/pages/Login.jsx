@@ -36,15 +36,25 @@ export const Login = () => {
         password,
       });
       if (response.status === 200) {
+        if (
+          !response.data.user.isVerified &&
+          response.data.user.userType !== "admin"
+        ) {
+          toast.error("Admin has not verified your account yet!");
+          return;
+        }
+
         setUser(response.data);
         localStorage.setItem("user", JSON.stringify(response.data));
         toast.success("Login successful", {
           position: toast.POSITION.TOP_RIGHT,
         });
         console.log(response);
-        response.data.user.userType === "admin"
-          ? (window.location.href = "/admin")
-          : navigate("/");
+        setTimeout(() => {
+          response.data.user.userType === "admin"
+            ? (window.location.href = "/admin")
+            : navigate("/");
+        }, 2000);
       } else {
         toast.error("Login failed!\nIncorrect Email or Password!", {
           position: toast.POSITION.TOP_RIGHT,

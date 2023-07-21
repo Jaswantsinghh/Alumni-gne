@@ -2,8 +2,7 @@ import React, { useState } from "react";
 import { useStoreState } from "easy-peasy";
 
 export const Profile = () => {
-
-    const user = JSON.parse(localStorage.getItem("user"));
+  const user = JSON.parse(localStorage.getItem("user"));
   const [firstName, setFirstName] = useState(user?.user?.firstName);
   const [lastName, setLastName] = useState(user?.user?.lastName);
   const [rollNo, setRollNo] = useState(user?.user?.rollNo);
@@ -15,14 +14,24 @@ export const Profile = () => {
   const [pincode, setPincode] = useState(user?.user?.pincode);
   const [email, setEmail] = useState(user?.user?.email);
   const [photos, setPhotos] = useState([]);
-  const [twitterProfile, setTwitterProfile] = useState(user?.user?.twitterProfileUrl);
-  const [instagramProfile, setInstagramProfile] = useState(user?.user?.instagramProfileUrl);
-  const [facebookProfile, setFacebookProfile] = useState(user?.user?.facebookProfileUrl);
+  const [twitterProfile, setTwitterProfile] = useState(
+    user?.user?.twitterProfileUrl
+  );
+  const [instagramProfile, setInstagramProfile] = useState(
+    user?.user?.instagramProfileUrl
+  );
+  const [facebookProfile, setFacebookProfile] = useState(
+    user?.user?.facebookProfileUrl
+  );
   const [aboutMe, setAboutMe] = useState(user?.user?.about);
   return (
     <>
-      <h1>User's Profile</h1>
-      <p>Status: <span>{user?.user?.isVerified ? "Active" : "Pending"} </span></p>
+      <div className="ml-16 mt-8">
+        <h1 className="">User's Profile</h1>
+        <p>
+          Status: <span>{user?.user?.isVerified ? "Active" : "Pending"} </span>
+        </p>
+      </div>
       <div className="register-container">
         <form>
           <div className="form-group">
@@ -194,9 +203,7 @@ export const Profile = () => {
               required
             ></textarea>
           </div>
-          <button type="submit">
-            Update Profile
-          </button>
+          <button type="submit">Update Profile</button>
         </form>
       </div>
     </>
