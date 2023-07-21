@@ -1,8 +1,13 @@
 import React, { useState } from "react";
 import { useStoreState } from "easy-peasy";
+import { updateFormValidations } from "../services/validations";
+import axios from "axios";
+import { constants } from "../constant";
+import { ToastContainer, toast } from "react-toastify";
 
 export const Profile = () => {
   const user = JSON.parse(localStorage.getItem("user"));
+  console.log(user);
   const [firstName, setFirstName] = useState(user?.user?.firstName);
   const [lastName, setLastName] = useState(user?.user?.lastName);
   const [rollNo, setRollNo] = useState(user?.user?.rollNo);
@@ -13,7 +18,7 @@ export const Profile = () => {
   const [country, setCountry] = useState(user?.user?.country);
   const [pincode, setPincode] = useState(user?.user?.pincode);
   const [email, setEmail] = useState(user?.user?.email);
-  const [photos, setPhotos] = useState([]);
+  // const [photos, setPhotos] = useState([]);
   const [twitterProfile, setTwitterProfile] = useState(
     user?.user?.twitterProfileUrl
   );
@@ -24,16 +29,87 @@ export const Profile = () => {
     user?.user?.facebookProfileUrl
   );
   const [aboutMe, setAboutMe] = useState(user?.user?.about);
+
+  const CONSTANTS = constants();
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    const validationError = updateFormValidations(
+      firstName,
+      lastName,
+      rollNo,
+      branch,
+      gradYear,
+      email
+    );
+    if (validationError)
+      return toast.error(validationError, {
+        position: toast.POSITION.TOP_RIGHT,
+        autoClose: 3000,
+      });
+
+    const formData = new FormData();
+    formData.append("firstName", firstName);
+    formData.append("lastName", lastName);
+    formData.append("rollNo", rollNo);
+    formData.append("branch", branch);
+    formData.append("gradYear", gradYear);
+    formData.append("phoneNumber", phoneNumber);
+    formData.append("address", address);
+    formData.append("country", country);
+    formData.append("pincode", pincode);
+    formData.append("email", email);
+    formData.append("twitterProfile", twitterProfile);
+    formData.append("instagramProfile", instagramProfile);
+    formData.append("facebookProfile", facebookProfile);
+    formData.append("aboutMe", aboutMe);
+
+    // for (let i = 0; i < photos.length; i++) {
+    //   formData.append("photos", photos[i]);
+    // }
+    axios
+      .patch(
+        `${CONSTANTS.API_BASE_URL}update/user/${user.user._id} `,
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      )
+      .then((res) => {
+        console.log(res);
+        if (res.status === 200) {
+          toast.success("User updated", {
+            position: toast.POSITION.TOP_RIGHT,
+            autoClose: 5000,
+          });
+        } else {
+          console.log("Error occured", err);
+          toast.error("Updated failed !", {
+            position: toast.POSITION.TOP_RIGHT,
+          });
+        }
+      })
+      .catch((err) => {
+        console.log("Error occured", err);
+        toast.error("Update failed !", {
+          position: toast.POSITION.TOP_RIGHT,
+        });
+      });
+  };
   return (
     <>
       <div className="ml-16 mt-8">
+        <ToastContainer />
         <h1 className="">User's Profile</h1>
         <p>
           Status: <span>{user?.user?.isVerified ? "Active" : "Pending"} </span>
         </p>
       </div>
       <div className="register-container">
-        <form>
+        <form onSubmit={handleSubmit}>
           <div className="form-group">
             <label htmlFor="firstName">First Name:</label>
             <input
@@ -150,17 +226,6 @@ export const Profile = () => {
               value={email}
               onChange={(event) => setEmail(event.target.value)}
               disabled
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="photos">Photos:</label>
-            <input
-              type="file"
-              id="photos"
-              name="photos"
-              multiple
-              onChange={(event) => setPhotos(Array.from(event.target.files))}
-              required
             />
           </div>
           <div className="form-group">

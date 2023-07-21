@@ -3,18 +3,15 @@ import { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useStoreActions } from "easy-peasy";
-import { useNavigate } from "react-router-dom";
 import { constants } from "../constant";
 import { validateLoginFormFields } from "../services/validations";
 
 export const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const navigate = useNavigate();
 
   const CONSTANTS = constants();
 
-  // action to set user
   const setUser = useStoreActions((actions) => actions.setUser);
 
   const handleSubmit = async (e) => {
@@ -53,7 +50,7 @@ export const Login = () => {
         setTimeout(() => {
           response.data.user.userType === "admin"
             ? (window.location.href = "/admin")
-            : navigate("/");
+            : (window.location.href = "/profile");
         }, 2000);
       } else {
         toast.error("Login failed!\nIncorrect Email or Password!", {
