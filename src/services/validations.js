@@ -15,7 +15,7 @@ export function validateFormFields(
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   const passwordRegex = /^.{6,}$/; // Minimum 6 characters required
 
-  if (!firstName || !firstName.match(nameRegex)) {
+  if (!firstName) {
     return "Please enter a valid first name. Only alphabets are allowed.";
   }
 
@@ -76,11 +76,11 @@ export function updateFormValidations(
 
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-  if (!firstName || !firstName.match(nameRegex)) {
+  if (!firstName.trim()) {
     return "Please enter a valid first name. Only alphabets are allowed.";
   }
 
-  if (!lastName || !lastName.match(nameRegex)) {
+  if (!lastName) {
     return "Please enter a valid last name. Only alphabets are allowed.";
   }
 
