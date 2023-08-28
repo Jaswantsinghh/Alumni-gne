@@ -22,6 +22,7 @@ export const Register = () => {
   const [pincode, setPincode] = useState("");
   const [email, setEmail] = useState("");
   const [photos, setPhotos] = useState([]);
+  const [profilePhoto, setProfilePhoto] = useState();
   const [twitterProfile, setTwitterProfile] = useState("");
   const [instagramProfile, setInstagramProfile] = useState("");
   const [facebookProfile, setFacebookProfile] = useState("");
@@ -93,6 +94,10 @@ export const Register = () => {
     formData.append("facebookProfile", facebookProfile);
     formData.append("aboutMe", aboutMe);
     formData.append("password", password);
+
+    if (profilePhoto) {
+      formData.append("profilePhoto", profilePhoto);
+    }
 
     for (let i = 0; i < photos.length; i++) {
       formData.append("photos", photos[i]);
@@ -326,6 +331,16 @@ export const Register = () => {
               name="photos"
               multiple
               onChange={(event) => setPhotos(Array.from(event.target.files))}
+              required
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="profilePicture">Profile Picutre:</label>
+            <input
+              type="file"
+              id="profilePicture"
+              name="profilePicture"
+              onChange={(event) => setProfilePhoto(event.target.files)}
               required
             />
           </div>

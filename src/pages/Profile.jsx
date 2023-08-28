@@ -18,6 +18,7 @@ export const Profile = () => {
   const [country, setCountry] = useState(user?.user?.country);
   const [pincode, setPincode] = useState(user?.user?.pincode);
   const [email, setEmail] = useState(user?.user?.email);
+  const [photos, setPhotos] = useState(user?.user?.photos);
   // const [photos, setPhotos] = useState([]);
   const [twitterProfile, setTwitterProfile] = useState(
     user?.user?.twitterProfileUrl
@@ -65,9 +66,9 @@ export const Profile = () => {
     formData.append("facebookProfile", facebookProfile);
     formData.append("aboutMe", aboutMe);
 
-    // for (let i = 0; i < photos.length; i++) {
-    //   formData.append("photos", photos[i]);
-    // }
+    for (let i = 0; i < photos.length; i++) {
+      formData.append("photos", photos[i]);
+    }
     axios
       .patch(
         `${CONSTANTS.API_BASE_URL}update/user/${user.user._id} `,
@@ -85,6 +86,7 @@ export const Profile = () => {
             position: toast.POSITION.TOP_RIGHT,
             autoClose: 5000,
           });
+          localStorage.setItem("user", JSON.stringify(res.data));
         } else {
           console.log("Error occured", err);
           toast.error("Updated failed !", {
@@ -98,6 +100,14 @@ export const Profile = () => {
           position: toast.POSITION.TOP_RIGHT,
         });
       });
+  };
+
+  const handleShuffleImage = (photo) => {
+    console.log(photo);
+    let unique = new Set([photo, ...photos]);
+    unique = Array.from(unique);
+    console.log(unique);
+    setPhotos(unique);
   };
   return (
     <>
@@ -228,6 +238,51 @@ export const Profile = () => {
               disabled
             />
           </div>
+          <div className="form-group">
+            {photos.length > 0 && (
+              <span className="text-xl mb-4 block">Your uploaded photos</span>
+            )}
+            {photos.map((photo) => (
+              <>
+                <button
+                  type="button"
+                  key={photo}
+                  onClick={() => handleShuffleImage(photo)}
+                >
+                  <img src={CONSTANTS.DO_BUCKET_URL + photo} className="h-48" />
+                </button>
+              </>
+            ))}
+
+            {/* need to fix this */}
+            {/* {photos.length === 0 && (
+              <>
+                <span className="text-xl mb-4 block">
+                  Please upload your photos
+                </span>
+
+                <input
+                  type="file"
+                  id="photos"
+                  name="photos"
+                  multiple
+                  onChange={(event) =>
+                    setPhotos(Array.from(event.target.files))
+                  }
+                  required
+                />
+              </>
+            )} */}
+            {/* <input
+              type="file"
+              id="photos"
+              name="photos"
+              multiple
+              onChange={(event) => setPhotos(Array.from(event.target.files))}
+              required
+            /> */}
+          </div>
+
           <div className="form-group">
             <label htmlFor="twitterProfile">Twitter Profile URL:</label>
             <input
