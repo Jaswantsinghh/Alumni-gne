@@ -134,7 +134,7 @@ export const Register = () => {
       })
       .catch((err) => {
         console.log(err);
-        if (err.response.status === 409) {
+        if (err?.response?.status === 409) {
           toast.error("Email already exists !", {
             position: toast.POSITION.TOP_RIGHT,
           });
@@ -330,7 +330,7 @@ export const Register = () => {
               id="photos"
               name="photos"
               multiple
-              onChange={(event) => setPhotos(Array.from(event.target.files))}
+              onChange={(event) => setPhotos(Array.from(event.target.files[0]))}
               required
             />
           </div>
