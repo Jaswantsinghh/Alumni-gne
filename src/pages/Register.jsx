@@ -330,7 +330,7 @@ export const Register = () => {
               id="photos"
               name="photos"
               multiple
-              onChange={(event) => setPhotos(Array.from(event.target.files[0]))}
+              onChange={(event) => setPhotos(Array.from(event.target.files))}
               required
             />
           </div>
@@ -340,7 +340,7 @@ export const Register = () => {
               type="file"
               id="profilePicture"
               name="profilePicture"
-              onChange={(event) => setProfilePhoto(event.target.files)}
+              onChange={(event) => setProfilePhoto(event.target.files[0])}
               required
             />
           </div>
