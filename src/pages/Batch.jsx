@@ -96,7 +96,7 @@ export const Batch = () => {
               <FeatureCard
                 key={user._id}
                 id={user._id}
-                avatar={user?.photos.length > 0 && user?.photos[0]}
+                avatar={user?.profilePhoto && user?.profilePhoto}
                 name={user.firstName + " " + user?.lastName}
                 branch={`${user?.branch} ${user?.graduationYear}`}
                 description={user?.about}
